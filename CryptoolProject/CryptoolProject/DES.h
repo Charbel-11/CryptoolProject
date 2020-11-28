@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -5,8 +6,6 @@ using namespace std;
 typedef unsigned long long ll;
 
 #pragma region Constants
-
-string HEX = "0123456789ABCDEF";
 
 vector<int> IP = {	58, 50, 42, 34, 26, 18, 10, 2, 60, 52, 44, 36, 28, 20, 12, 4, 62, 54, 46, 38, 30, 22, 14, 6, 64, 56, 48, 40, 32, 24, 16, 8,
 					57, 49, 41, 33, 25, 17, 9, 1, 59, 51, 43, 35, 27, 19, 11, 3, 61, 53, 45, 37, 29, 21, 13, 5, 63, 55, 47, 39, 31, 23, 15, 7 };
@@ -41,7 +40,7 @@ vector<vector<int>> S7 = {	{ 4, 11, 2, 14, 15, 0, 8, 13, 3, 12, 9, 7, 5, 10, 6, 
 							{ 1, 4, 11, 13, 12, 3, 7, 14, 10, 15, 6, 8, 0, 5, 9, 2 }, { 6, 11, 13, 8, 1, 4, 10, 7, 9, 5, 0, 15, 14, 2, 3, 12 } };
 vector<vector<int>> S8 = {	{ 13, 2, 8, 4, 6, 15, 11, 1, 10, 9, 3, 14, 5, 0, 12, 7 }, { 1, 15, 13, 8, 10, 3, 7, 4, 12, 5, 6, 11, 0, 14, 9, 2 },
 							{ 7, 11, 4, 1, 9, 12, 14, 2, 0, 6, 10, 13, 15, 3, 5, 8 }, { 2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11 } };
-vector<vector<vector<int>>> S = { S1, S2, S3, S4, S5, S6, S7, S8 };
+vector<vector<vector<int>>> desS = { S1, S2, S3, S4, S5, S6, S7, S8 };
 
 vector<int> P = { 16, 7, 20, 21, 29, 12, 28, 17, 1, 15, 23, 26, 5, 18, 31, 10, 2, 8, 24, 14, 32, 27, 3, 9, 19, 13, 30, 6, 22, 11, 4, 25 };
 
@@ -65,17 +64,18 @@ void printDES(ll k, int len, int sp) {
 }
 
 string toHexDES(ll x) {
-	string res;
+	string res; string HEXDES = "0123456789ABCDEF";
 	for (int i = 0; i < 16; i++, x >>= 4)
-		res.push_back(HEX[x & 0xF]);
+		res.push_back(HEXDES[x & 0xF]);
 	reverse(res.begin(), res.end());
 	return move(res);
 }
 
 ll fromHexDES(string h) {
-	ll res = 0, first = find(HEX.begin(), HEX.end(), h[0]) - HEX.begin();
+	string HEXDES = "0123456789ABCDEF";
+	ll res = 0, first = find(HEXDES.begin(), HEXDES.end(), h[0]) - HEXDES.begin();
 	for (int i = 1; i < 16; i++, res <<= 4)
-		res += find(HEX.begin(), HEX.end(), h[i]) - HEX.begin();
+		res += find(HEXDES.begin(), HEXDES.end(), h[i]) - HEXDES.begin();
 	return (res >> 4) | ((1ull << 60) * first);
 }
 
@@ -123,7 +123,7 @@ class DES {
 		ll B = fKey ^ e, SB = 0;
 		int rightShift = 42, leftShift = 28;
 		for (int i = 0; i < 8; i++) {
-			SB |= sBox((B >> rightShift) & 0x3F, S[i]) << leftShift;
+			SB |= sBox((B >> rightShift) & 0x3F, desS[i]) << leftShift;
 			rightShift -= 6; leftShift -= 4;
 		}
 

@@ -11,13 +11,13 @@
     <Filter Include="DataEncryptionStandard">
       <UniqueIdentifier>{cbd28432-7d12-4fe8-a253-f29c862659e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AdvancedEncryptionStandard">
+      <UniqueIdentifier>{4f07ad47-88e3-4527-a640-6af9caecf982}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DES.h">
-      <Filter>DataEncryptionStandard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -32,6 +32,12 @@
     </ClInclude>
     <ClInclude Include="VigenereCipher.h">
       <Filter>ClassicalEncryptionTechniques</Filter>
+    </ClInclude>
+    <ClInclude Include="AES.h">
+      <Filter>AdvancedEncryptionStandard</Filter>
+    </ClInclude>
+    <ClInclude Include="DES.h">
+      <Filter>DataEncryptionStandard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

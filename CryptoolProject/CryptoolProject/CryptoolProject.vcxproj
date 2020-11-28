@@ -139,11 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DES.h" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AES.h" />
     <ClInclude Include="AffineCipher.h" />
+    <ClInclude Include="DES.h" />
     <ClInclude Include="MonoAlphabeticCipher.h" />
     <ClInclude Include="PlayfairCipher.h" />
     <ClInclude Include="VigenereCipher.h" />
