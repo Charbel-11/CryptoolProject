@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-typedef unsigned long long ll;
+typedef unsigned long long ull;
 
 #pragma region Constants
 
@@ -47,14 +47,14 @@ vector<int> P = { 16, 7, 20, 21, 29, 12, 28, 17, 1, 15, 23, 26, 5, 18, 31, 10, 2
 #pragma endregion
 
 #pragma region Functions
-string toBinaryDES(ll x, int len) {
+string toBinaryDES(ull x, int len) {
 	string res = "";
 	while (x) { res.push_back((x & 1) + '0'); x >>= 1; }
 	while ((int)res.size() < len) { res.push_back('0'); }
 	reverse(res.begin(), res.end()); return move(res);
 }
 
-void printDES(ll k, int len, int sp) {
+void printDES(ull k, int len, int sp) {
 	string K = toBinaryDES(k, len);
 	for (int i = 0; i < len; i++) {
 		if (i && i % sp == 0) cout << ' ';
@@ -63,7 +63,7 @@ void printDES(ll k, int len, int sp) {
 	cout << '\n' << '\n';
 }
 
-string toHexDES(ll x) {
+string toHexDES(ull x) {
 	string res; string HEXDES = "0123456789ABCDEF";
 	for (int i = 0; i < 16; i++, x >>= 4)
 		res.push_back(HEXDES[x & 0xF]);
@@ -71,9 +71,9 @@ string toHexDES(ll x) {
 	return move(res);
 }
 
-ll fromHexDES(string h) {
+ull fromHexDES(string h) {
 	string HEXDES = "0123456789ABCDEF";
-	ll res = 0, first = find(HEXDES.begin(), HEXDES.end(), h[0]) - HEXDES.begin();
+	ull res = 0, first = find(HEXDES.begin(), HEXDES.end(), h[0]) - HEXDES.begin();
 	for (int i = 1; i < 16; i++, res <<= 4)
 		res += find(HEXDES.begin(), HEXDES.end(), h[i]) - HEXDES.begin();
 	return (res >> 4) | ((1ull << 60) * first);
@@ -82,71 +82,71 @@ ll fromHexDES(string h) {
 #pragma endregion
 
 struct DESRes {
-	vector<ll> keys, L, R;
-	ll finalRes = 0; DESRes() {}
-	DESRes(vector<ll>& _keys, vector<ll>& _L, vector<ll>& _R, ll& _finalRes) :
+	vector<ull> keys, L, R;
+	ull finalRes = 0; DESRes() {}
+	DESRes(vector<ull>& _keys, vector<ull>& _L, vector<ull>& _R, ull& _finalRes) :
 		keys(_keys), L(_L), R(_R), finalRes(_finalRes) {}
 };
 
 class DES {
-	vector<ll> encKeys, decKeys; ll key = 0; DES() {}
+	vector<ull> encKeys, decKeys; ull key = 0; DES() {}
 
-	vector<ll> generateKeys() {
-		ll CD0 = 0; for (int i = 0; i < 56; i++)
+	vector<ull> generateKeys() {
+		ull CD0 = 0; for (int i = 0; i < 56; i++)
 			CD0 |= (1ull << (55 - i)) * ((key >> (64 - PC1[i])) & 1);
 
-		ll mask = 0xFFFFFFF; vector<ll> CD(16, 0ll);
-		ll C = CD0 >> 28, D = CD0 & mask;
+		ull mask = 0xFFFFFFF; vector<ull> CD(16, 0ull);
+		ull C = CD0 >> 28, D = CD0 & mask;
 		for (int i = 0; i < 16; i++) {
 			C = ((C << leftShifts[i]) | (C >> (28 - leftShifts[i]))) & mask;
 			D = ((D << leftShifts[i]) | (D >> (28 - leftShifts[i]))) & mask;
 			CD[i] = (C << 28) | D;
 		}
 
-		vector<ll> res(16, 0ll);
+		vector<ull> res(16, 0ull);
 		for (int i = 0; i < 16; i++) for (int j = 0; j < 48; j++)
 			res[i] |= (1ull << (47 - j)) * ((CD[i] >> (56 - PC2[j])) & 1);
 
 		return move(res);
 	}
 
-	ll sBox(ll x, vector<vector<int>> sB) {
+	ull sBox(ull x, vector<vector<int>> sB) {
 		int row = ((x >> 4) & 2) | (x & 1);
 		int col = (x & 0x1F) >> 1;
 		return sB[row][col];
 	}
 
-	ll F(ll block, ll fKey) {
-		ll e = 0; for (int i = 0; i < 48; i++)
+	ull F(ull block, ull fKey) {
+		ull e = 0; for (int i = 0; i < 48; i++)
 			e |= (1ull << (47 - i)) * ((block >> (32 - E[i])) & 1);
 
-		ll B = fKey ^ e, SB = 0;
+		ull B = fKey ^ e, SB = 0;
 		int rightShift = 42, leftShift = 28;
 		for (int i = 0; i < 8; i++) {
 			SB |= sBox((B >> rightShift) & 0x3F, desS[i]) << leftShift;
 			rightShift -= 6; leftShift -= 4;
 		}
 
-		ll res = 0; for (int i = 0; i < 32; i++)
+		ull res = 0; for (int i = 0; i < 32; i++)
 			res |= (1ull << (31 - i)) * ((SB >> (32 - P[i])) & 1);
 
 		return res;
 	}
 
-	DESRes dataEncryptionAlgorithm(ll text, vector<ll>& keys) {
-		vector<ll> _L, _R;
-		ll LR0 = 0; for (int i = 0; i < 64; i++)
+	DESRes dataEncryptionAlgorithm(ull text, vector<ull>& keys) {
+		vector<ull> _L, _R;
+		ull LR0 = 0; for (int i = 0; i < 64; i++)
 			LR0 |= (1ull << (63 - i)) * ((text >> (64 - IP[i])) & 1);
 
-		ll mask = 0xFFFFFFFF;
-		ll L = LR0 >> 32, R = LR0 & mask; 
+		ull mask = 0xFFFFFFFF;
+		ull L = LR0 >> 32, R = LR0 & mask; 
 		_L.push_back(L); _R.push_back(R);
 		for (int i = 0; i < 16; i++) {
-			ll newL = R, newR = L ^ F(R, keys[i]);
+			ull newL = R, newR = L ^ F(R, keys[i]);
 			_L.push_back(L = newL); _R.push_back(R = newR);
 		}
 
-		ll RL = (R << 32) | L, res = 0;
+		ull RL = (R << 32) | L, res = 0;
 		for (int i = 0; i < 64; i++)
 			res |= (1ull << (63 - i)) * ((RL >> (64 - PI[i])) & 1);
 
@@ -155,16 +155,16 @@ class DES {
 
 public:
 
-	DES(ll _key) : key(_key) {
+	DES(ull _key) : key(_key) {
 		decKeys = encKeys = generateKeys();
 		reverse(decKeys.begin(), decKeys.end());
 	}
 
-	ll encryptDES(ll text) {
+	ull encryptDES(ull text) {
 		return dataEncryptionAlgorithm(text, encKeys).finalRes;
 	}
 
-	ll decryptDES(ll text) {
+	ull decryptDES(ull text) {
 		return dataEncryptionAlgorithm(text, decKeys).finalRes;
 	}
 

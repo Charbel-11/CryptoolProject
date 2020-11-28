@@ -25,9 +25,6 @@
     <ClCompile Include="ExtendedGCD.h">
       <Filter>ClassicalEncryptionTechniques</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ACM\ACM\Pre-Written Code\Number Theory\Basic Operations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NumberTheory.h">
       <Filter>NumberTheory</Filter>
     </ClCompile>

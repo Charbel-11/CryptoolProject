@@ -11,7 +11,7 @@ class NumberTheory {
 		vector<pair<ll, int>> res;
 		for (ll i = 2; i * i <= x; i++) {
 			if (x % i) { continue; }
-			int p = i, e = 0;
+			ll p = i; int e = 0;
 			while (x % p == 0) { x /= p; e++; }
 			res.push_back({ p, e });
 		}
