@@ -142,6 +142,7 @@
     <ClCompile Include="Affine Cipher.h" />
     <ClCompile Include="MonoAlphabeticCipher.h" />
     <ClCompile Include="Test.cpp" />
+    <ClCompile Include="Vigenere Cipher.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

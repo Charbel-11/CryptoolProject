@@ -24,5 +24,8 @@
     <ClCompile Include="MonoAlphabeticCipher.h">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Vigenere Cipher.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
