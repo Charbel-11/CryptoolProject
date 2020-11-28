@@ -1,8 +1,8 @@
 #pragma once
-#include "Affine Cipher.h"
+#include "AffineCipher.h"
 #include "MonoAlphabeticCipher.h"
-#include "Vigenere Cipher.h"
-#include "Playfair Cipher.h"
+#include "VigenereCipher.h"
+#include "PlayfairCipher.h"
 
 int main() {
 

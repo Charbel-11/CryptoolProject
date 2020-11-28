@@ -8,23 +8,29 @@
     <Filter Include="ClassicalEncryptionTechniques">
       <UniqueIdentifier>{9d18ac85-007b-4119-8df4-645e6f3f65b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DataEncryptionStandard">
+      <UniqueIdentifier>{cbd28432-7d12-4fe8-a253-f29c862659e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DES.h">
+      <Filter>DataEncryptionStandard</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Affine Cipher.h">
-      <Filter>ClassicalEncryptionTechniques</Filter>
-    </ClInclude>
     <ClInclude Include="MonoAlphabeticCipher.h">
       <Filter>ClassicalEncryptionTechniques</Filter>
     </ClInclude>
-    <ClInclude Include="Playfair Cipher.h">
+    <ClInclude Include="AffineCipher.h">
       <Filter>ClassicalEncryptionTechniques</Filter>
     </ClInclude>
-    <ClInclude Include="Vigenere Cipher.h">
+    <ClInclude Include="PlayfairCipher.h">
+      <Filter>ClassicalEncryptionTechniques</Filter>
+    </ClInclude>
+    <ClInclude Include="VigenereCipher.h">
       <Filter>ClassicalEncryptionTechniques</Filter>
     </ClInclude>
   </ItemGroup>
