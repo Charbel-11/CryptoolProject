@@ -139,7 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\ACM\ACM\Pre-Written Code\Number Theory\Basic Operations.cpp" />
     <ClCompile Include="ExtendedGCD.h" />
+    <ClCompile Include="NumberTheory.h" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>

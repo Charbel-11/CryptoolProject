@@ -14,6 +14,9 @@
     <Filter Include="AdvancedEncryptionStandard">
       <UniqueIdentifier>{4f07ad47-88e3-4527-a640-6af9caecf982}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NumberTheory">
+      <UniqueIdentifier>{59dd9070-6dd6-4ec0-ab4e-274298076cf0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -21,6 +24,12 @@
     </ClCompile>
     <ClCompile Include="ExtendedGCD.h">
       <Filter>ClassicalEncryptionTechniques</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ACM\ACM\Pre-Written Code\Number Theory\Basic Operations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NumberTheory.h">
+      <Filter>NumberTheory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

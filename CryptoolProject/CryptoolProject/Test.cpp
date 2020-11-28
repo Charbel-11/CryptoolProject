@@ -3,6 +3,8 @@
 #include "MonoAlphabeticCipher.h"
 #include "VigenereCipher.h"
 #include "PlayfairCipher.h"
+#include "ExtendedGCD.h"
+#include "NumberTheory.h"
 #include "AES.h"
 #include "DES.h"
 
