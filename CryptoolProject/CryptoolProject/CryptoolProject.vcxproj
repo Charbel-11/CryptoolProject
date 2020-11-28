@@ -141,6 +141,8 @@
   <ItemGroup>
     <ClCompile Include="ExtendedGCD.h" />
     <ClCompile Include="NumberTheory.h" />
+    <ClCompile Include="Polynomial Arithmtic 0.h" />
+    <ClCompile Include="Polynomial Arithmetic 1.h" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>

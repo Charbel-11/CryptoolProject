@@ -17,6 +17,9 @@
     <Filter Include="NumberTheory">
       <UniqueIdentifier>{59dd9070-6dd6-4ec0-ab4e-274298076cf0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Polynomial Arithmetic">
+      <UniqueIdentifier>{edd5af58-7c35-46a0-b65c-b5bb9b14c1fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -27,6 +30,12 @@
     </ClCompile>
     <ClCompile Include="NumberTheory.h">
       <Filter>NumberTheory</Filter>
+    </ClCompile>
+    <ClCompile Include="Polynomial Arithmtic 0.h">
+      <Filter>Polynomial Arithmetic</Filter>
+    </ClCompile>
+    <ClCompile Include="Polynomial Arithmetic 1.h">
+      <Filter>Polynomial Arithmetic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

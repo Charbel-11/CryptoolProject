@@ -43,4 +43,31 @@ class NumberTheory {
 			if (n & 1) res = (res * x) % mod;
 		return res;
 	}
+
+
+	bool millerRabin(ll d, int p, ll n) {
+		int r = rand() % (n - 4) + 2;
+		int x = modularPower(r, d, n);
+		if (x == 1 || x == n - 1) { return 1; }
+		for (int i = 0; i < p - 1; i++)
+		{
+			x = modularPower(x, 2, n);
+			if (x == 1) { return 0; }
+			if (x == n - 1) { return 1; }
+		}
+		return 0;
+	}
+
+	//Checks if n is prime using k iterations of Miller-Rabin's algorithm
+	bool isPrime(int n, int k) {
+		if (n == 1 || n == 0 || n == 4) { return 0; }
+		if (n == 2 || n == 3) { return 1; }
+
+		int d = n - 1, p = 0;
+		while (d % 2 == 0) { d /= 2; p++; }
+		for (int i = 0; i < k; i++) {
+			if (!millerRabin(d, p, n)) { return 0; }
+		}
+		return 1;
+	}
 };
