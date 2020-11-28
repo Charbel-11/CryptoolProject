@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExtendedGCD.h" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
