@@ -31,9 +31,6 @@
     <ClCompile Include="NumberTheory.h">
       <Filter>NumberTheory</Filter>
     </ClCompile>
-    <ClCompile Include="Polynomial Arithmtic 0.h">
-      <Filter>Polynomial Arithmetic</Filter>
-    </ClCompile>
     <ClCompile Include="Polynomial Arithmetic 1.h">
       <Filter>Polynomial Arithmetic</Filter>
     </ClCompile>
@@ -56,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="DES.h">
       <Filter>DataEncryptionStandard</Filter>
+    </ClInclude>
+    <ClInclude Include="Polynomial Arithmetic 0.h">
+      <Filter>Polynomial Arithmetic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

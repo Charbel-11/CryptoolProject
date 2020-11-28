@@ -141,7 +141,6 @@
   <ItemGroup>
     <ClCompile Include="ExtendedGCD.h" />
     <ClCompile Include="NumberTheory.h" />
-    <ClCompile Include="Polynomial Arithmtic 0.h" />
     <ClCompile Include="Polynomial Arithmetic 1.h" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
@@ -151,6 +150,7 @@
     <ClInclude Include="DES.h" />
     <ClInclude Include="MonoAlphabeticCipher.h" />
     <ClInclude Include="PlayfairCipher.h" />
+    <ClInclude Include="Polynomial Arithmetic 0.h" />
     <ClInclude Include="VigenereCipher.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
