@@ -1,11 +1,11 @@
+#pragma once
 #include "Affine Cipher.h"
+#include "MonoAlphabeticCipher.h"
 
 int main() {
-	AffineCipher af1(5, 11);
-	AffineCipher af2('M', 'K');
-
-	cout << af1.encrypt("MAXWELL") << '\n';
-	cout << af1.decrypt("UFOOD") << '\n';
-	cout << af2.getA() << ' ' << af2.getB() << '\n';
+	MonoAlphabeticCipher mac("DKVQFIBJWPESCXHTMYAUOLRGZN");
+	string enc = mac.encrypt("ifwewishtoreplaceletters");
+	string dec = mac.decrypt(enc);
+	cout << enc << '\n' << dec << '\n';
 	cin.ignore(2); return 0;
 }
