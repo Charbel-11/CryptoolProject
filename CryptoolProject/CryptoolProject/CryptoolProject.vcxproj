@@ -139,10 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Affine Cipher.h" />
-    <ClCompile Include="MonoAlphabeticCipher.h" />
     <ClCompile Include="Test.cpp" />
-    <ClCompile Include="Vigenere Cipher.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Affine Cipher.h" />
+    <ClInclude Include="MonoAlphabeticCipher.h" />
+    <ClInclude Include="Playfair Cipher.h" />
+    <ClInclude Include="Vigenere Cipher.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
