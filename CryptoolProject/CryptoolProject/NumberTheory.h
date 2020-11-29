@@ -70,4 +70,49 @@ class NumberTheory {
 		}
 		return 1;
 	}
+
+
+
+
+	// a*x - b*y = return value = GCD(a,b). x,y >= 0
+	ll egcd(ll a, ll b, ll& x, ll& y) {
+		if (b == 0) { 
+			x = 1; y = 0;
+			return a;
+		}
+		ll d = egcd(b, a % b, y, x);
+		y = a - x * (a / b) - y;
+		x = b - x;
+		return d;
+	}
+	// modular inverse; works for any mod p (coprime with a)
+	ll modInverse(ll a, ll p) {
+		ll x, y;
+		egcd(a % p + p, p, x, y);
+		return x % p;
+	}
+	// Given x = a (mod m) and x = b (mod n)
+	// returns res such that x = res (mod lcm(m,n))
+	ll CRT2(ll a, ll m, ll b, ll n) {
+		b = (b + n - (a % n)) % n;
+		ll d = gcd(m, n);
+		ll oldM = m;
+		m /= d; b /= d; n /= d;
+		return ((b * modInverse(m, n)) % n) * oldM + a;
+	}
+	//Given x = a[i] mod m[i] for each i, we find x mod the product of m[i] for all i
+	ll CRT(vector<ll> a, vector<ll> m) {
+		ll A = a[0]; ll curM = m[0];
+		for (int i = 1; i < a.size(); i++) {
+			A = CRT2(A, curM, a[i], m[i]);
+			curM *= m[i];
+		}
+		return A;
+	}
+	//Given A, returns a[i] for each i
+	vector<ll> reverseCRT(ll A, vector<ll> m) {
+		vector<ll> a(m.size());
+		for (int i = 0; i < m.size(); i++) { a[i] = A % m[i]; }
+		return a;
+	}
 };
