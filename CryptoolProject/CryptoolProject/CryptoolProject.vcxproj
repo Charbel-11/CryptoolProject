@@ -81,6 +81,8 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>Main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,6 +117,9 @@
   <ItemGroup>
     <ClInclude Include="AES.h" />
     <ClInclude Include="AffineCipher.h" />
+    <ClInclude Include="AffineCipherGUI.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ClassicalEncryptionTechniques.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -141,6 +146,12 @@
     <ClCompile Include="MainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AffineCipherGUI.resx">
+      <DependentUpon>AffineCipherGUI.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassicalEncryptionTechniques.resx">
+      <DependentUpon>ClassicalEncryptionTechniques.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
     </EmbeddedResource>
