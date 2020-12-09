@@ -76,7 +76,7 @@ class NumberTheory {
 
 	// a*x - b*y = return value = GCD(a,b). x,y >= 0
 	ll egcd(ll a, ll b, ll& x, ll& y) {
-		if (b == 0) { 
+		if (b == 0) {
 			x = 1; y = 0;
 			return a;
 		}

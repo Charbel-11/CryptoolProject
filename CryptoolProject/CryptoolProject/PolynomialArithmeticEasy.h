@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
@@ -107,7 +108,7 @@ int moduloReduction(int input, int mod) {
 //0 if no mult inverse exists (e.g. if input=mod)
 int findInverse(int input, int mod) {
 	input = moduloReduction(input, mod);
-	return eGCDPoly(input, mod).second;		
+	return eGCDPoly(input, mod).second;
 }
 
 int add(int input1, int input2, int mod) {
@@ -131,11 +132,4 @@ pair<int, int> divide(int input1, int input2, int mod) {
 	p.first = moduloReduction(p.first, mod);
 	p.second = moduloReduction(p.second, mod);
 	return p;
-}
-
-int main() {	
-	int deg2 = 7, deg3 = 13, deg4 = 25, deg5 = 37, deg6 = 67, deg7 = 131, deg8 = 283;
-	
-	int input = 20; //1 <= input <= 2^deg-1
-
 }
