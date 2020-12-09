@@ -115,6 +115,9 @@
   <ItemGroup>
     <ClInclude Include="AES.h" />
     <ClInclude Include="AffineCipher.h" />
+    <ClInclude Include="ClassicalEncryptionTechniques.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="DES.h" />
     <ClInclude Include="ExtendedGCD.h" />
     <ClInclude Include="MainForm.h">

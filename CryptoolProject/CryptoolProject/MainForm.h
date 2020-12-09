@@ -1,9 +1,5 @@
 #pragma once
-#include "AdvancedEncryptionStandard.h";
 #include "ClassicalEncryptionTechniques.h";
-#include "DataEncryptionStandard.h";
-#include "NumberTheory.h";
-#include "PolynomialArithmetic.h";
 
 namespace CryptoolProject {
 
@@ -144,7 +140,8 @@ namespace CryptoolProject {
 		}
 #pragma endregion
 	private: System::Void CETButton_Click(System::Object^ sender, System::EventArgs^ e) {
-
+		ClassicalEncryptionTechniques ^CETForm = gcnew ClassicalEncryptionTechniques(this);
+		CETForm->Show(); this->Hide();
 	}
 };
 }

@@ -81,6 +81,9 @@
     <ClInclude Include="MainForm.h">
       <Filter>GUI</Filter>
     </ClInclude>
+    <ClInclude Include="ClassicalEncryptionTechniques.h">
+      <Filter>GUI\Classical Encryption Techniques</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainForm.cpp">
