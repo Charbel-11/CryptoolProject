@@ -78,41 +78,11 @@
     <ClInclude Include="NumberTheory.h">
       <Filter>Header Files\Number Theory</Filter>
     </ClInclude>
-    <ClInclude Include="ClassicalEncryptionTechniques.h">
-      <Filter>GUI\Classical Encryption Techniques</Filter>
-    </ClInclude>
-    <ClInclude Include="PolynomialArithmetic.h">
-      <Filter>GUI\Polynomial Arithmetic</Filter>
-    </ClInclude>
-    <ClInclude Include="AdvancedEncryptionStandard.h">
-      <Filter>GUI\Advanced Encryption Standard</Filter>
-    </ClInclude>
-    <ClInclude Include="DataEncryptionStandard.h">
-      <Filter>GUI\Data Encryption Standard</Filter>
-    </ClInclude>
-    <ClInclude Include="Number_Theory.h">
-      <Filter>GUI\Number Theory</Filter>
-    </ClInclude>
     <ClInclude Include="MainForm.h">
       <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ClassicalEncryptionTechniques.cpp">
-      <Filter>GUI\Classical Encryption Techniques</Filter>
-    </ClCompile>
-    <ClCompile Include="PolynomialArithmetic.cpp">
-      <Filter>GUI\Polynomial Arithmetic</Filter>
-    </ClCompile>
-    <ClCompile Include="AdvancedEncryptionStandard.cpp">
-      <Filter>GUI\Advanced Encryption Standard</Filter>
-    </ClCompile>
-    <ClCompile Include="DataEncryptionStandard.cpp">
-      <Filter>GUI\Data Encryption Standard</Filter>
-    </ClCompile>
-    <ClCompile Include="Number_Theory.cpp">
-      <Filter>GUI\Number Theory</Filter>
-    </ClCompile>
     <ClCompile Include="MainForm.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
