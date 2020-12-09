@@ -111,16 +111,49 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AdvancedEncryptionStandard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="AES.h" />
     <ClInclude Include="AffineCipher.h" />
+    <ClInclude Include="ClassicalEncryptionTechniques.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="DataEncryptionStandard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="DES.h" />
     <ClInclude Include="ExtendedGCD.h" />
+    <ClInclude Include="MainForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MonoAlphabeticCipher.h" />
     <ClInclude Include="NumberTheory.h" />
+    <ClInclude Include="Number_Theory.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PlayfairCipher.h" />
     <ClInclude Include="Polynomial ArithmeticEasy.h" />
     <ClInclude Include="Polynomial ArithmeticHard.h" />
+    <ClInclude Include="PolynomialArithmetic.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="VigenereCipher.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AdvancedEncryptionStandard.cpp" />
+    <ClCompile Include="ClassicalEncryptionTechniques.cpp" />
+    <ClCompile Include="DataEncryptionStandard.cpp" />
+    <ClCompile Include="MainForm.cpp" />
+    <ClCompile Include="Number_Theory.cpp" />
+    <ClCompile Include="PolynomialArithmetic.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

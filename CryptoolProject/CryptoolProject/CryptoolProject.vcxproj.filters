@@ -31,6 +31,21 @@
     <Filter Include="GUI">
       <UniqueIdentifier>{ef4ebc87-d4c4-4ab2-b101-9318634cb883}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI\Classical Encryption Techniques">
+      <UniqueIdentifier>{a194e73b-e9c8-4144-97bb-01b87fa22e2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Polynomial Arithmetic">
+      <UniqueIdentifier>{afb6d05d-7788-4a27-ae1b-d041749d805a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Advanced Encryption Standard">
+      <UniqueIdentifier>{5d845f5a-38fc-4dcf-b8c9-67720ddec987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Data Encryption Standard">
+      <UniqueIdentifier>{4cd01e14-a338-4323-b4a6-95fb596fee20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Number Theory">
+      <UniqueIdentifier>{cd3fd14e-2383-4178-954d-19324b98d87f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AffineCipher.h">
@@ -63,5 +78,43 @@
     <ClInclude Include="NumberTheory.h">
       <Filter>Header Files\Number Theory</Filter>
     </ClInclude>
+    <ClInclude Include="ClassicalEncryptionTechniques.h">
+      <Filter>GUI\Classical Encryption Techniques</Filter>
+    </ClInclude>
+    <ClInclude Include="PolynomialArithmetic.h">
+      <Filter>GUI\Polynomial Arithmetic</Filter>
+    </ClInclude>
+    <ClInclude Include="AdvancedEncryptionStandard.h">
+      <Filter>GUI\Advanced Encryption Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="DataEncryptionStandard.h">
+      <Filter>GUI\Data Encryption Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="Number_Theory.h">
+      <Filter>GUI\Number Theory</Filter>
+    </ClInclude>
+    <ClInclude Include="MainForm.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ClassicalEncryptionTechniques.cpp">
+      <Filter>GUI\Classical Encryption Techniques</Filter>
+    </ClCompile>
+    <ClCompile Include="PolynomialArithmetic.cpp">
+      <Filter>GUI\Polynomial Arithmetic</Filter>
+    </ClCompile>
+    <ClCompile Include="AdvancedEncryptionStandard.cpp">
+      <Filter>GUI\Advanced Encryption Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="DataEncryptionStandard.cpp">
+      <Filter>GUI\Data Encryption Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="Number_Theory.cpp">
+      <Filter>GUI\Number Theory</Filter>
+    </ClCompile>
+    <ClCompile Include="MainForm.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
