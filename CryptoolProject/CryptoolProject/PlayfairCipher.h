@@ -12,7 +12,7 @@ class PlayfairCipher {
 	bool isUpper(char& c) { return c >= 'A' && c <= 'Z'; }
 	bool isLower(char& c) { return c >= 'a' && c <= 'z'; }
 
-	void initializePlayfair(string& key) {
+	void initializePlayfair(string &key) {
 		vector<int> freq(26, 0);
 		int n = (int)key.size(), j = 0;
 

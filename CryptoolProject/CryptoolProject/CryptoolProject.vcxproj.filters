@@ -14,48 +14,45 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Header Files\Classical Encryption Techniques">
-      <UniqueIdentifier>{e0e112d4-66da-4469-be00-83c08c3a1dca}</UniqueIdentifier>
+      <UniqueIdentifier>{6a0cd078-da4d-4168-ac91-35a980854cb4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Polynomial Arithmetic">
-      <UniqueIdentifier>{fb2408ba-4d5f-4c9f-9ff8-3699d34c30f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Number Theory">
-      <UniqueIdentifier>{422ab6c5-b799-4904-9abc-c583161e0bb9}</UniqueIdentifier>
+      <UniqueIdentifier>{4388aa9b-6f19-4d63-baf3-7773ca478518}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Advanced Encryption Standard">
-      <UniqueIdentifier>{5b29946e-953d-48f2-b759-1ed905844af0}</UniqueIdentifier>
+      <UniqueIdentifier>{fb15164d-5c06-4b1b-b536-bbbdb83cf886}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Data Encryption Standard">
-      <UniqueIdentifier>{30312726-8527-4fba-982e-4e2c05cc9e63}</UniqueIdentifier>
+      <UniqueIdentifier>{5d3f5432-1b03-41bd-a66c-e9938bfcd41d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Number Theory">
+      <UniqueIdentifier>{5d3f8930-15ad-48cc-b26d-f8f1906c0f89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{ef4ebc87-d4c4-4ab2-b101-9318634cb883}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CryptoolProject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AffineCipher.h">
+      <Filter>Header Files\Classical Encryption Techniques</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedGCD.h">
       <Filter>Header Files\Classical Encryption Techniques</Filter>
     </ClInclude>
     <ClInclude Include="MonoAlphabeticCipher.h">
       <Filter>Header Files\Classical Encryption Techniques</Filter>
     </ClInclude>
-    <ClInclude Include="VigenereCipher.h">
-      <Filter>Header Files\Classical Encryption Techniques</Filter>
-    </ClInclude>
     <ClInclude Include="PlayfairCipher.h">
       <Filter>Header Files\Classical Encryption Techniques</Filter>
     </ClInclude>
-    <ClInclude Include="ExtendedGCD.h">
+    <ClInclude Include="VigenereCipher.h">
       <Filter>Header Files\Classical Encryption Techniques</Filter>
+    </ClInclude>
+    <ClInclude Include="Polynomial ArithmeticEasy.h">
+      <Filter>Header Files\Polynomial Arithmetic</Filter>
+    </ClInclude>
+    <ClInclude Include="Polynomial ArithmeticHard.h">
+      <Filter>Header Files\Polynomial Arithmetic</Filter>
     </ClInclude>
     <ClInclude Include="AES.h">
       <Filter>Header Files\Advanced Encryption Standard</Filter>
@@ -66,29 +63,5 @@
     <ClInclude Include="NumberTheory.h">
       <Filter>Header Files\Number Theory</Filter>
     </ClInclude>
-    <ClInclude Include="PolynomialArithmeticEasy.h">
-      <Filter>Header Files\Polynomial Arithmetic</Filter>
-    </ClInclude>
-    <ClInclude Include="PolynomialArithmeticHard.h">
-      <Filter>Header Files\Polynomial Arithmetic</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CryptoolProject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="CryptoolProject.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="CryptoolProject.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
 </Project>

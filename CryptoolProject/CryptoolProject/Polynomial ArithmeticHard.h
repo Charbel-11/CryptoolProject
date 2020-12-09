@@ -39,7 +39,7 @@ bitset<SZ> shift(bitset<SZ>& a, int k) {
 //Multiplies polynomials a and b with coefficients in GF(2)
 bitset<SZ> multPoly(bitset<SZ>& a, bitset<SZ>& b) {
 	bitset<SZ> res;
-	for (int j = SZ - 1; j >= 0; j--) {
+	for (int j = SZ-1; j >= 0; j--) {
 		if (b[j]) {
 			bitset<SZ> aShift = shift(a, j);
 			res ^= aShift;
@@ -50,17 +50,17 @@ bitset<SZ> multPoly(bitset<SZ>& a, bitset<SZ>& b) {
 
 //Takes polynomials a, b and returns polynomials a/b, a%b
 pair<bitset<SZ>, bitset<SZ>> divPoly(bitset<SZ>& a, bitset<SZ>& b) {
-	for (int j = SZ - 1; j >= 0; j--) {
+	for (int j = SZ-1; j >= 0; j--) {
 		if (b[j] && !a[j]) { return { bitset<SZ>(0),a }; }
 		else if (a[j]) { break; }
 	}
 	int firstSetB = 0;
-	for (int j = SZ - 1; j >= 0; j--) {
+	for (int j = SZ-1; j >= 0; j--) {
 		if (b[j]) { firstSetB = j; break; }
 	}
 
 	bitset<SZ> q, r;
-	for (int j = SZ - 1; j >= firstSetB; j--) {
+	for (int j = SZ-1; j >= firstSetB; j--) {
 		if (!a[j]) { continue; }
 		for (int k = j; k >= 0; k--) {
 			if (b[k]) {
@@ -138,7 +138,7 @@ pair<bitset<SZ>, bitset<SZ>> divide(bitset<SZ>& input1, bitset<SZ>& input2, bits
 
 
 //Choices: 163, 233, 239, 283, 409, 571
-void setMod(bitset<SZ>& mod, int deg) {
+void setMod(bitset<SZ>&mod, int deg) {
 	mod.reset(); mod[0] = 1;
 	if (deg == 163) { mod[163] = mod[7] = mod[6] = mod[3] = 1; }
 	else if (deg == 233) { mod[233] = mod[74] = 1; }

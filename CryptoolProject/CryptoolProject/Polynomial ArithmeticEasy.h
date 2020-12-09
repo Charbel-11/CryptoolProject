@@ -108,7 +108,7 @@ int moduloReduction(int input, int mod) {
 //0 if no mult inverse exists (e.g. if input=mod)
 int findInverse(int input, int mod) {
 	input = moduloReduction(input, mod);
-	return eGCDPoly(input, mod).second;
+	return eGCDPoly(input, mod).second;		
 }
 
 int add(int input1, int input2, int mod) {
