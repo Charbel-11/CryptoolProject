@@ -1,5 +1,5 @@
 #pragma once
-#include "ClassicalEncryptionTechniques.h";
+#include "ClassicalEncryptionTechniques.h"
 
 namespace CryptoolProject {
 

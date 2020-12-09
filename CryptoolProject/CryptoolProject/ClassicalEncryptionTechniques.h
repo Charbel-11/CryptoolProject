@@ -1,5 +1,4 @@
 #pragma once
-#include "MainForm.h";
 
 namespace CryptoolProject {
 
@@ -9,6 +8,8 @@ namespace CryptoolProject {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+
+	ref class MainForm;
 
 	/// <summary>
 	/// Summary for ClassicalEncryptionTechniques
