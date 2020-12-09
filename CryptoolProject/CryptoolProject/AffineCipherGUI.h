@@ -1,5 +1,7 @@
 #pragma once
 #include "AffineCipher.h"
+#include <string>
+#include <msclr/marshal.h>
 
 namespace CryptoolProject {
 
@@ -9,6 +11,7 @@ namespace CryptoolProject {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace msclr::interop;
 
 	/// <summary>
 	/// Summary for AffineCipherGUI
@@ -41,12 +44,16 @@ namespace CryptoolProject {
 	protected:
 	private: System::Windows::Forms::Label^ AffineCipherLabel;
 	private: System::Windows::Forms::TextBox^ PlainTextTB;
-	private: System::Windows::Forms::ComboBox^ comboBox1;
+	private: System::Windows::Forms::ComboBox^ ACB;
+
 	private: System::Windows::Forms::Label^ ALabel;
-	private: System::Windows::Forms::ComboBox^ comboBox2;
+	private: System::Windows::Forms::ComboBox^ BCB;
+
 	private: System::Windows::Forms::Label^ BLabel;
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::TextBox^ CiphertextTB;
+
+	private: System::Windows::Forms::Label^ CyphertextLabel;
+
 	private: System::Windows::Forms::Button^ EncryptButton;
 	private: System::Windows::Forms::Button^ BackButton;
 
@@ -66,12 +73,12 @@ namespace CryptoolProject {
 			this->PlaintextLabel = (gcnew System::Windows::Forms::Label());
 			this->AffineCipherLabel = (gcnew System::Windows::Forms::Label());
 			this->PlainTextTB = (gcnew System::Windows::Forms::TextBox());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->ACB = (gcnew System::Windows::Forms::ComboBox());
 			this->ALabel = (gcnew System::Windows::Forms::Label());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->BCB = (gcnew System::Windows::Forms::ComboBox());
 			this->BLabel = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->CiphertextTB = (gcnew System::Windows::Forms::TextBox());
+			this->CyphertextLabel = (gcnew System::Windows::Forms::Label());
 			this->EncryptButton = (gcnew System::Windows::Forms::Button());
 			this->BackButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
@@ -103,17 +110,17 @@ namespace CryptoolProject {
 			this->PlainTextTB->Size = System::Drawing::Size(450, 22);
 			this->PlainTextTB->TabIndex = 2;
 			// 
-			// comboBox1
+			// ACB
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(25) {
-				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
-					L"9", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"17", L"18", L"19", L"20", L"21", L"22", L"23", L"24", L"25"
+			this->ACB->FormattingEnabled = true;
+			this->ACB->Items->AddRange(gcnew cli::array< System::Object^  >(25) {
+				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8", L"9",
+					L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"17", L"18", L"19", L"20", L"21", L"22", L"23", L"24", L"25"
 			});
-			this->comboBox1->Location = System::Drawing::Point(137, 174);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(88, 24);
-			this->comboBox1->TabIndex = 3;
+			this->ACB->Location = System::Drawing::Point(137, 174);
+			this->ACB->Name = L"ACB";
+			this->ACB->Size = System::Drawing::Size(88, 24);
+			this->ACB->TabIndex = 3;
 			// 
 			// ALabel
 			// 
@@ -125,17 +132,17 @@ namespace CryptoolProject {
 			this->ALabel->TabIndex = 4;
 			this->ALabel->Text = L"A";
 			// 
-			// comboBox2
+			// BCB
 			// 
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(26) {
-				L"0", L"1", L"2", L"3", L"4", L"5", L"6", L"7",
-					L"8", L"9", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"17", L"18", L"19", L"20", L"21", L"22", L"23", L"24", L"25"
+			this->BCB->FormattingEnabled = true;
+			this->BCB->Items->AddRange(gcnew cli::array< System::Object^  >(26) {
+				L"0", L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
+					L"9", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"17", L"18", L"19", L"20", L"21", L"22", L"23", L"24", L"25"
 			});
-			this->comboBox2->Location = System::Drawing::Point(329, 174);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(88, 24);
-			this->comboBox2->TabIndex = 5;
+			this->BCB->Location = System::Drawing::Point(329, 174);
+			this->BCB->Name = L"BCB";
+			this->BCB->Size = System::Drawing::Size(88, 24);
+			this->BCB->TabIndex = 5;
 			// 
 			// BLabel
 			// 
@@ -147,23 +154,23 @@ namespace CryptoolProject {
 			this->BLabel->TabIndex = 6;
 			this->BLabel->Text = L"B";
 			// 
-			// textBox1
+			// CiphertextTB
 			// 
-			this->textBox1->Location = System::Drawing::Point(137, 233);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->ReadOnly = true;
-			this->textBox1->Size = System::Drawing::Size(450, 22);
-			this->textBox1->TabIndex = 7;
+			this->CiphertextTB->Location = System::Drawing::Point(137, 233);
+			this->CiphertextTB->Name = L"CiphertextTB";
+			this->CiphertextTB->ReadOnly = true;
+			this->CiphertextTB->Size = System::Drawing::Size(450, 22);
+			this->CiphertextTB->TabIndex = 7;
 			// 
-			// label1
+			// CyphertextLabel
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
-			this->label1->Location = System::Drawing::Point(46, 235);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(85, 20);
-			this->label1->TabIndex = 8;
-			this->label1->Text = L"Ciphertext";
+			this->CyphertextLabel->AutoSize = true;
+			this->CyphertextLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
+			this->CyphertextLabel->Location = System::Drawing::Point(46, 235);
+			this->CyphertextLabel->Name = L"CyphertextLabel";
+			this->CyphertextLabel->Size = System::Drawing::Size(85, 20);
+			this->CyphertextLabel->TabIndex = 8;
+			this->CyphertextLabel->Text = L"Ciphertext";
 			// 
 			// EncryptButton
 			// 
@@ -191,12 +198,12 @@ namespace CryptoolProject {
 			this->ClientSize = System::Drawing::Size(656, 411);
 			this->Controls->Add(this->BackButton);
 			this->Controls->Add(this->EncryptButton);
-			this->Controls->Add(this->label1);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->CyphertextLabel);
+			this->Controls->Add(this->CiphertextTB);
 			this->Controls->Add(this->BLabel);
-			this->Controls->Add(this->comboBox2);
+			this->Controls->Add(this->BCB);
 			this->Controls->Add(this->ALabel);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->ACB);
 			this->Controls->Add(this->PlainTextTB);
 			this->Controls->Add(this->AffineCipherLabel);
 			this->Controls->Add(this->PlaintextLabel);
@@ -207,9 +214,15 @@ namespace CryptoolProject {
 
 		}
 #pragma endregion
-	private: System::Void EncryptButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ text = PlainTextTB->Text;
+	private: 
+		System::Void EncryptButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			/*string text = marshal_as<string, String^>(PlainTextTB->Text);
+			string a = marshal_as<string, String^>(ACB->Text);
+			string b = marshal_as<string, String^>(BCB->Text);
+			int A = stoi(a), B = stoi(b);
 
-	}
-};
+			AffineCipher ac(A, B); string res = ac.encrypt(text);
+			CiphertextTB->Text = marshal_as<String^, string>(res);*/
+		}
+	};
 }
