@@ -115,7 +115,7 @@ namespace CryptoolProject {
 			this->ATB->Location = System::Drawing::Point(53, 132);
 			this->ATB->Name = L"ATB";
 			this->ATB->Size = System::Drawing::Size(102, 22);
-			this->ATB->TabIndex = 2;
+			this->ATB->TabIndex = 1;
 			// 
 			// ALabel
 			// 
@@ -142,14 +142,14 @@ namespace CryptoolProject {
 			this->BTB->Location = System::Drawing::Point(238, 132);
 			this->BTB->Name = L"BTB";
 			this->BTB->Size = System::Drawing::Size(102, 22);
-			this->BTB->TabIndex = 4;
+			this->BTB->TabIndex = 2;
 			// 
 			// ComputeButton
 			// 
 			this->ComputeButton->Location = System::Drawing::Point(400, 131);
 			this->ComputeButton->Name = L"ComputeButton";
 			this->ComputeButton->Size = System::Drawing::Size(102, 23);
-			this->ComputeButton->TabIndex = 6;
+			this->ComputeButton->TabIndex = 3;
 			this->ComputeButton->Text = L"Compute";
 			this->ComputeButton->UseVisualStyleBackColor = true;
 			this->ComputeButton->Click += gcnew System::EventHandler(this, &ExtendedGCDGUI::ComputeButton_Click);
@@ -159,7 +159,7 @@ namespace CryptoolProject {
 			this->BackButton->Location = System::Drawing::Point(553, 131);
 			this->BackButton->Name = L"BackButton";
 			this->BackButton->Size = System::Drawing::Size(102, 23);
-			this->BackButton->TabIndex = 7;
+			this->BackButton->TabIndex = 4;
 			this->BackButton->Text = L"Back";
 			this->BackButton->UseVisualStyleBackColor = true;
 			this->BackButton->Click += gcnew System::EventHandler(this, &ExtendedGCDGUI::BackButton_Click);
@@ -180,7 +180,7 @@ namespace CryptoolProject {
 			this->YTB->Name = L"YTB";
 			this->YTB->ReadOnly = true;
 			this->YTB->Size = System::Drawing::Size(102, 22);
-			this->YTB->TabIndex = 10;
+			this->YTB->TabIndex = 7;
 			// 
 			// XLabel
 			// 
@@ -198,7 +198,7 @@ namespace CryptoolProject {
 			this->XTB->Name = L"XTB";
 			this->XTB->ReadOnly = true;
 			this->XTB->Size = System::Drawing::Size(102, 22);
-			this->XTB->TabIndex = 8;
+			this->XTB->TabIndex = 6;
 			// 
 			// ErrorLabel
 			// 
@@ -225,7 +225,7 @@ namespace CryptoolProject {
 			this->GCDTB->Name = L"GCDTB";
 			this->GCDTB->ReadOnly = true;
 			this->GCDTB->Size = System::Drawing::Size(102, 22);
-			this->GCDTB->TabIndex = 13;
+			this->GCDTB->TabIndex = 5;
 			// 
 			// ExtendedGCDGUI
 			// 

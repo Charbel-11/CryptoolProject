@@ -98,7 +98,7 @@ namespace CryptoolProject {
 			this->DecryptButton->Location = System::Drawing::Point(354, 348);
 			this->DecryptButton->Name = L"DecryptButton";
 			this->DecryptButton->Size = System::Drawing::Size(110, 29);
-			this->DecryptButton->TabIndex = 21;
+			this->DecryptButton->TabIndex = 5;
 			this->DecryptButton->Text = L"Decrypt";
 			this->DecryptButton->UseVisualStyleBackColor = true;
 			this->DecryptButton->Click += gcnew System::EventHandler(this, &VigenereCipherGUI::DecryptButton_Click);
@@ -108,7 +108,7 @@ namespace CryptoolProject {
 			this->BackButton->Location = System::Drawing::Point(491, 348);
 			this->BackButton->Name = L"BackButton";
 			this->BackButton->Size = System::Drawing::Size(110, 29);
-			this->BackButton->TabIndex = 20;
+			this->BackButton->TabIndex = 6;
 			this->BackButton->Text = L"Back";
 			this->BackButton->UseVisualStyleBackColor = true;
 			this->BackButton->Click += gcnew System::EventHandler(this, &VigenereCipherGUI::BackButton_Click);
@@ -118,7 +118,7 @@ namespace CryptoolProject {
 			this->EncryptButton->Location = System::Drawing::Point(215, 348);
 			this->EncryptButton->Name = L"EncryptButton";
 			this->EncryptButton->Size = System::Drawing::Size(110, 29);
-			this->EncryptButton->TabIndex = 19;
+			this->EncryptButton->TabIndex = 4;
 			this->EncryptButton->Text = L"Encrpyt";
 			this->EncryptButton->UseVisualStyleBackColor = true;
 			this->EncryptButton->Click += gcnew System::EventHandler(this, &VigenereCipherGUI::EncryptButton_Click);
@@ -147,7 +147,7 @@ namespace CryptoolProject {
 			this->KeyTB->Location = System::Drawing::Point(215, 213);
 			this->KeyTB->Name = L"KeyTB";
 			this->KeyTB->Size = System::Drawing::Size(386, 22);
-			this->KeyTB->TabIndex = 16;
+			this->KeyTB->TabIndex = 2;
 			// 
 			// CPLabel
 			// 
@@ -165,14 +165,14 @@ namespace CryptoolProject {
 			this->CPTB->Name = L"CPTB";
 			this->CPTB->ReadOnly = true;
 			this->CPTB->Size = System::Drawing::Size(386, 22);
-			this->CPTB->TabIndex = 14;
+			this->CPTB->TabIndex = 3;
 			// 
 			// PCTB
 			// 
 			this->PCTB->Location = System::Drawing::Point(215, 135);
 			this->PCTB->Name = L"PCTB";
 			this->PCTB->Size = System::Drawing::Size(386, 22);
-			this->PCTB->TabIndex = 13;
+			this->PCTB->TabIndex = 1;
 			// 
 			// PCLabel
 			// 

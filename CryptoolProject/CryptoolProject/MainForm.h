@@ -90,7 +90,7 @@ namespace CryptoolProject {
 			this->AESButton->Location = System::Drawing::Point(381, 178);
 			this->AESButton->Name = L"AESButton";
 			this->AESButton->Size = System::Drawing::Size(287, 36);
-			this->AESButton->TabIndex = 2;
+			this->AESButton->TabIndex = 4;
 			this->AESButton->Text = L"Advanced Encryption Standard (AES)";
 			this->AESButton->UseVisualStyleBackColor = true;
 			// 
@@ -108,7 +108,7 @@ namespace CryptoolProject {
 			this->DESButton->Location = System::Drawing::Point(381, 107);
 			this->DESButton->Name = L"DESButton";
 			this->DESButton->Size = System::Drawing::Size(287, 36);
-			this->DESButton->TabIndex = 4;
+			this->DESButton->TabIndex = 2;
 			this->DESButton->Text = L"Data Encryption Standard (DES)";
 			this->DESButton->UseVisualStyleBackColor = true;
 			// 

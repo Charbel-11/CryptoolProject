@@ -147,7 +147,7 @@ namespace CryptoolProject {
 			this->PCTB->Location = System::Drawing::Point(233, 127);
 			this->PCTB->Name = L"PCTB";
 			this->PCTB->Size = System::Drawing::Size(408, 22);
-			this->PCTB->TabIndex = 2;
+			this->PCTB->TabIndex = 1;
 			// 
 			// ACB
 			// 
@@ -159,7 +159,7 @@ namespace CryptoolProject {
 			this->ACB->Location = System::Drawing::Point(253, 170);
 			this->ACB->Name = L"ACB";
 			this->ACB->Size = System::Drawing::Size(88, 24);
-			this->ACB->TabIndex = 3;
+			this->ACB->TabIndex = 2;
 			// 
 			// ALabel
 			// 
@@ -181,7 +181,7 @@ namespace CryptoolProject {
 			this->BCB->Location = System::Drawing::Point(445, 170);
 			this->BCB->Name = L"BCB";
 			this->BCB->Size = System::Drawing::Size(88, 24);
-			this->BCB->TabIndex = 5;
+			this->BCB->TabIndex = 3;
 			// 
 			// BLabel
 			// 
@@ -199,7 +199,7 @@ namespace CryptoolProject {
 			this->CPTB->Name = L"CPTB";
 			this->CPTB->ReadOnly = true;
 			this->CPTB->Size = System::Drawing::Size(408, 22);
-			this->CPTB->TabIndex = 7;
+			this->CPTB->TabIndex = 4;
 			// 
 			// CPLabel
 			// 
@@ -216,7 +216,7 @@ namespace CryptoolProject {
 			this->EncryptButton->Location = System::Drawing::Point(233, 276);
 			this->EncryptButton->Name = L"EncryptButton";
 			this->EncryptButton->Size = System::Drawing::Size(132, 33);
-			this->EncryptButton->TabIndex = 9;
+			this->EncryptButton->TabIndex = 5;
 			this->EncryptButton->Text = L"Encrypt";
 			this->EncryptButton->UseVisualStyleBackColor = true;
 			this->EncryptButton->Click += gcnew System::EventHandler(this, &AffineCipherGUI::EncryptButton_Click);
@@ -236,7 +236,7 @@ namespace CryptoolProject {
 			this->DecryptButton->Location = System::Drawing::Point(511, 276);
 			this->DecryptButton->Name = L"DecryptButton";
 			this->DecryptButton->Size = System::Drawing::Size(130, 33);
-			this->DecryptButton->TabIndex = 12;
+			this->DecryptButton->TabIndex = 6;
 			this->DecryptButton->Text = L"Decrypt";
 			this->DecryptButton->UseVisualStyleBackColor = true;
 			this->DecryptButton->Click += gcnew System::EventHandler(this, &AffineCipherGUI::DecryptButton_Click);
@@ -256,7 +256,7 @@ namespace CryptoolProject {
 			this->BackButton->Location = System::Drawing::Point(511, 569);
 			this->BackButton->Name = L"BackButton";
 			this->BackButton->Size = System::Drawing::Size(130, 33);
-			this->BackButton->TabIndex = 23;
+			this->BackButton->TabIndex = 12;
 			this->BackButton->Text = L"Back";
 			this->BackButton->UseVisualStyleBackColor = true;
 			this->BackButton->Click += gcnew System::EventHandler(this, &AffineCipherGUI::BackButton_Click);
@@ -266,7 +266,7 @@ namespace CryptoolProject {
 			this->Decrypt2Button->Location = System::Drawing::Point(233, 569);
 			this->Decrypt2Button->Name = L"Decrypt2Button";
 			this->Decrypt2Button->Size = System::Drawing::Size(132, 33);
-			this->Decrypt2Button->TabIndex = 22;
+			this->Decrypt2Button->TabIndex = 11;
 			this->Decrypt2Button->Text = L"Decrypt";
 			this->Decrypt2Button->UseVisualStyleBackColor = true;
 			this->Decrypt2Button->Click += gcnew System::EventHandler(this, &AffineCipherGUI::Decrypt2Button_Click);
@@ -287,7 +287,7 @@ namespace CryptoolProject {
 			this->PTB->Name = L"PTB";
 			this->PTB->ReadOnly = true;
 			this->PTB->Size = System::Drawing::Size(408, 22);
-			this->PTB->TabIndex = 20;
+			this->PTB->TabIndex = 10;
 			// 
 			// label4
 			// 
@@ -309,7 +309,7 @@ namespace CryptoolProject {
 			this->TCB->Location = System::Drawing::Point(445, 463);
 			this->TCB->Name = L"TCB";
 			this->TCB->Size = System::Drawing::Size(88, 24);
-			this->TCB->TabIndex = 18;
+			this->TCB->TabIndex = 9;
 			// 
 			// label5
 			// 
@@ -331,14 +331,14 @@ namespace CryptoolProject {
 			this->ECB->Location = System::Drawing::Point(253, 463);
 			this->ECB->Name = L"ECB";
 			this->ECB->Size = System::Drawing::Size(88, 24);
-			this->ECB->TabIndex = 16;
+			this->ECB->TabIndex = 8;
 			// 
 			// CTB
 			// 
 			this->CTB->Location = System::Drawing::Point(233, 420);
 			this->CTB->Name = L"CTB";
 			this->CTB->Size = System::Drawing::Size(408, 22);
-			this->CTB->TabIndex = 15;
+			this->CTB->TabIndex = 7;
 			// 
 			// label6
 			// 

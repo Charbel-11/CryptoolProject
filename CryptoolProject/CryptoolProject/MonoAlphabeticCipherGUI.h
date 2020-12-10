@@ -127,7 +127,7 @@ namespace CryptoolProject {
 			this->PCTB->Location = System::Drawing::Point(215, 158);
 			this->PCTB->Name = L"PCTB";
 			this->PCTB->Size = System::Drawing::Size(386, 22);
-			this->PCTB->TabIndex = 3;
+			this->PCTB->TabIndex = 1;
 			// 
 			// CPTB
 			// 
@@ -135,7 +135,7 @@ namespace CryptoolProject {
 			this->CPTB->Name = L"CPTB";
 			this->CPTB->ReadOnly = true;
 			this->CPTB->Size = System::Drawing::Size(386, 22);
-			this->CPTB->TabIndex = 4;
+			this->CPTB->TabIndex = 3;
 			// 
 			// CPLabel
 			// 
@@ -152,7 +152,7 @@ namespace CryptoolProject {
 			this->KeyTB->Location = System::Drawing::Point(215, 236);
 			this->KeyTB->Name = L"KeyTB";
 			this->KeyTB->Size = System::Drawing::Size(386, 22);
-			this->KeyTB->TabIndex = 6;
+			this->KeyTB->TabIndex = 2;
 			// 
 			// KeyLabel
 			// 
@@ -178,7 +178,7 @@ namespace CryptoolProject {
 			this->EncryptButton->Location = System::Drawing::Point(215, 371);
 			this->EncryptButton->Name = L"EncryptButton";
 			this->EncryptButton->Size = System::Drawing::Size(110, 29);
-			this->EncryptButton->TabIndex = 9;
+			this->EncryptButton->TabIndex = 4;
 			this->EncryptButton->Text = L"Encrpyt";
 			this->EncryptButton->UseVisualStyleBackColor = true;
 			this->EncryptButton->Click += gcnew System::EventHandler(this, &MonoAlphabeticCipherGUI::EncryptButton_Click);
@@ -188,7 +188,7 @@ namespace CryptoolProject {
 			this->BackButton->Location = System::Drawing::Point(491, 371);
 			this->BackButton->Name = L"BackButton";
 			this->BackButton->Size = System::Drawing::Size(110, 29);
-			this->BackButton->TabIndex = 10;
+			this->BackButton->TabIndex = 6;
 			this->BackButton->Text = L"Back";
 			this->BackButton->UseVisualStyleBackColor = true;
 			this->BackButton->Click += gcnew System::EventHandler(this, &MonoAlphabeticCipherGUI::BackButton_Click);
@@ -198,7 +198,7 @@ namespace CryptoolProject {
 			this->DecryptButton->Location = System::Drawing::Point(354, 371);
 			this->DecryptButton->Name = L"DecryptButton";
 			this->DecryptButton->Size = System::Drawing::Size(110, 29);
-			this->DecryptButton->TabIndex = 11;
+			this->DecryptButton->TabIndex = 5;
 			this->DecryptButton->Text = L"Decrypt";
 			this->DecryptButton->UseVisualStyleBackColor = true;
 			this->DecryptButton->Click += gcnew System::EventHandler(this, &MonoAlphabeticCipherGUI::DecryptButton_Click);

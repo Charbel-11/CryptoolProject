@@ -105,7 +105,7 @@ namespace CryptoolProject {
 			this->PCButton->Location = System::Drawing::Point(510, 192);
 			this->PCButton->Name = L"PCButton";
 			this->PCButton->Size = System::Drawing::Size(290, 33);
-			this->PCButton->TabIndex = 2;
+			this->PCButton->TabIndex = 4;
 			this->PCButton->Text = L"Playfair Cipher";
 			this->PCButton->UseVisualStyleBackColor = true;
 			this->PCButton->Click += gcnew System::EventHandler(this, &ClassicalEncryptionTechniques::PCButton_Click);
@@ -115,7 +115,7 @@ namespace CryptoolProject {
 			this->HCButton->Location = System::Drawing::Point(80, 262);
 			this->HCButton->Name = L"HCButton";
 			this->HCButton->Size = System::Drawing::Size(290, 33);
-			this->HCButton->TabIndex = 3;
+			this->HCButton->TabIndex = 5;
 			this->HCButton->Text = L"Hill Cipher";
 			this->HCButton->UseVisualStyleBackColor = true;
 			this->HCButton->Click += gcnew System::EventHandler(this, &ClassicalEncryptionTechniques::HCButton_Click);
@@ -125,7 +125,7 @@ namespace CryptoolProject {
 			this->EEAButton->Location = System::Drawing::Point(510, 262);
 			this->EEAButton->Name = L"EEAButton";
 			this->EEAButton->Size = System::Drawing::Size(290, 33);
-			this->EEAButton->TabIndex = 4;
+			this->EEAButton->TabIndex = 6;
 			this->EEAButton->Text = L"Extended Euclidean Algorithm";
 			this->EEAButton->UseVisualStyleBackColor = true;
 			this->EEAButton->Click += gcnew System::EventHandler(this, &ClassicalEncryptionTechniques::EEAButton_Click);
@@ -135,7 +135,7 @@ namespace CryptoolProject {
 			this->MACButton->Location = System::Drawing::Point(510, 121);
 			this->MACButton->Name = L"MACButton";
 			this->MACButton->Size = System::Drawing::Size(290, 33);
-			this->MACButton->TabIndex = 5;
+			this->MACButton->TabIndex = 2;
 			this->MACButton->Text = L"Mono-Alphabetic Cipher";
 			this->MACButton->UseVisualStyleBackColor = true;
 			this->MACButton->Click += gcnew System::EventHandler(this, &ClassicalEncryptionTechniques::MACButton_Click);
@@ -145,7 +145,7 @@ namespace CryptoolProject {
 			this->VCButton->Location = System::Drawing::Point(80, 192);
 			this->VCButton->Name = L"VCButton";
 			this->VCButton->Size = System::Drawing::Size(290, 33);
-			this->VCButton->TabIndex = 6;
+			this->VCButton->TabIndex = 3;
 			this->VCButton->Text = L"Vigenere Cipher";
 			this->VCButton->UseVisualStyleBackColor = true;
 			this->VCButton->Click += gcnew System::EventHandler(this, &ClassicalEncryptionTechniques::VCButton_Click);
