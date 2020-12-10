@@ -54,7 +54,8 @@ namespace CryptoolProject {
 	private: System::Windows::Forms::TextBox^ CPTB;
 	private: System::Windows::Forms::TextBox^ PCTB;
 	private: System::Windows::Forms::Label^ PCLabel;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ PlayfairLabel;
+
 	private: System::Windows::Forms::TextBox^ PMTB;
 	private: System::Windows::Forms::Label^ label3;
 
@@ -81,7 +82,7 @@ namespace CryptoolProject {
 			this->CPTB = (gcnew System::Windows::Forms::TextBox());
 			this->PCTB = (gcnew System::Windows::Forms::TextBox());
 			this->PCLabel = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->PlayfairLabel = (gcnew System::Windows::Forms::Label());
 			this->PMTB = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
@@ -177,15 +178,15 @@ namespace CryptoolProject {
 			this->PCLabel->TabIndex = 23;
 			this->PCLabel->Text = L"Plaintext/Ciphertext";
 			// 
-			// label1
+			// PlayfairLabel
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 30));
-			this->label1->Location = System::Drawing::Point(149, 9);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(387, 58);
-			this->label1->TabIndex = 22;
-			this->label1->Text = L"Vigenère Cipher";
+			this->PlayfairLabel->AutoSize = true;
+			this->PlayfairLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 30));
+			this->PlayfairLabel->Location = System::Drawing::Point(149, 9);
+			this->PlayfairLabel->Name = L"PlayfairLabel";
+			this->PlayfairLabel->Size = System::Drawing::Size(353, 58);
+			this->PlayfairLabel->TabIndex = 22;
+			this->PlayfairLabel->Text = L"Playfair Cipher";
 			// 
 			// PMTB
 			// 
@@ -223,7 +224,7 @@ namespace CryptoolProject {
 			this->Controls->Add(this->CPTB);
 			this->Controls->Add(this->PCTB);
 			this->Controls->Add(this->PCLabel);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->PlayfairLabel);
 			this->Name = L"PlayfairCipherGUI";
 			this->Text = L"PlayfairCipherGUI";
 			this->ResumeLayout(false);

@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-class ExtendedGCD {
+struct ExtendedGCD {
 	static pair<int, pair<int, int>> find(int a, int b) {
 		bool s = a < b; if (s) { swap(a, b); s = true; }
 		int A1 = 1, A2 = 0, A3 = a;
