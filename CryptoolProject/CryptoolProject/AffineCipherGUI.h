@@ -19,6 +19,9 @@ namespace CryptoolProject {
 	public ref class AffineCipherGUI : public System::Windows::Forms::Form
 	{
 		Form^ parent;
+		bool isUpper(char& c) { return c >= 'A' && c <= 'Z'; }
+		bool isLower(char& c) { return c >= 'a' && c <= 'z'; }
+
 	public:
 		AffineCipherGUI(Form^ _parent)
 		{
@@ -60,10 +63,12 @@ namespace CryptoolProject {
 
 
 	private: System::Windows::Forms::Button^ EncryptButton;
+	private: System::Windows::Forms::Label^ Description1Label;
 
-	private: System::Windows::Forms::Label^ label1;
+
 	private: System::Windows::Forms::Button^ DecryptButton;
-	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ Description2Label;
+
 	private: System::Windows::Forms::Button^ BackButton;
 	private: System::Windows::Forms::Button^ Decrypt2Button;
 	private: System::Windows::Forms::Label^ label3;
@@ -102,9 +107,9 @@ namespace CryptoolProject {
 			this->CPTB = (gcnew System::Windows::Forms::TextBox());
 			this->CPLabel = (gcnew System::Windows::Forms::Label());
 			this->EncryptButton = (gcnew System::Windows::Forms::Button());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->Description1Label = (gcnew System::Windows::Forms::Label());
 			this->DecryptButton = (gcnew System::Windows::Forms::Button());
-			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->Description2Label = (gcnew System::Windows::Forms::Label());
 			this->BackButton = (gcnew System::Windows::Forms::Button());
 			this->Decrypt2Button = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -216,15 +221,15 @@ namespace CryptoolProject {
 			this->EncryptButton->UseVisualStyleBackColor = true;
 			this->EncryptButton->Click += gcnew System::EventHandler(this, &AffineCipherGUI::EncryptButton_Click);
 			// 
-			// label1
+			// Description1Label
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			this->label1->Location = System::Drawing::Point(176, 86);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(375, 25);
-			this->label1->TabIndex = 11;
-			this->label1->Text = L"Encrypts/Decrypts according to Y = AX+B";
+			this->Description1Label->AutoSize = true;
+			this->Description1Label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			this->Description1Label->Location = System::Drawing::Point(176, 86);
+			this->Description1Label->Name = L"Description1Label";
+			this->Description1Label->Size = System::Drawing::Size(375, 25);
+			this->Description1Label->TabIndex = 11;
+			this->Description1Label->Text = L"Encrypts/Decrypts according to Y = AX+B";
 			// 
 			// DecryptButton
 			// 
@@ -236,15 +241,15 @@ namespace CryptoolProject {
 			this->DecryptButton->UseVisualStyleBackColor = true;
 			this->DecryptButton->Click += gcnew System::EventHandler(this, &AffineCipherGUI::DecryptButton_Click);
 			// 
-			// label2
+			// Description2Label
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			this->label2->Location = System::Drawing::Point(74, 372);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(579, 25);
-			this->label2->TabIndex = 13;
-			this->label2->Text = L"Decrypts given most two frequent letters in the encrypted alphabet";
+			this->Description2Label->AutoSize = true;
+			this->Description2Label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			this->Description2Label->Location = System::Drawing::Point(74, 372);
+			this->Description2Label->Name = L"Description2Label";
+			this->Description2Label->Size = System::Drawing::Size(579, 25);
+			this->Description2Label->TabIndex = 13;
+			this->Description2Label->Text = L"Decrypts given most two frequent letters in the encrypted alphabet";
 			// 
 			// BackButton
 			// 
@@ -360,9 +365,9 @@ namespace CryptoolProject {
 			this->Controls->Add(this->ECB);
 			this->Controls->Add(this->CTB);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->label2);
+			this->Controls->Add(this->Description2Label);
 			this->Controls->Add(this->DecryptButton);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->Description1Label);
 			this->Controls->Add(this->EncryptButton);
 			this->Controls->Add(this->CPLabel);
 			this->Controls->Add(this->CPTB);
@@ -385,6 +390,7 @@ namespace CryptoolProject {
 			string text = marshal_as<string, String^>(PCTB->Text);
 			string a = marshal_as<string, String^>(ACB->Text);
 			string b = marshal_as<string, String^>(BCB->Text);
+			if (a.empty() || b.empty()) { CPTB->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return; }
 			int A = stoi(a), B = stoi(b);
 
 			AffineCipher ac(A, B); string res = ac.encrypt(text);
@@ -395,9 +401,12 @@ namespace CryptoolProject {
 			string text = marshal_as<string, String^>(PCTB->Text);
 			string a = marshal_as<string, String^>(ACB->Text);
 			string b = marshal_as<string, String^>(BCB->Text);
+			if(a.empty() || b.empty()){ CPTB->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return; }
 			int A = stoi(a), B = stoi(b);
 
-			AffineCipher ac(A, B); string res = ac.decrypt(text);
+			AffineCipher ac(A, B);
+			if (!ac.canDecrypt()) { CPTB->Text = marshal_as<String^, string>("ERROR: Irreversible Cipher!"); return; }
+			string res = ac.decrypt(text);
 			CPTB->Text = marshal_as<String^, string>(res);
 		}
 	private: 
@@ -405,9 +414,13 @@ namespace CryptoolProject {
 			string text = marshal_as<string, String^>(CTB->Text);
 			string a = marshal_as<string, String^>(ECB->Text);
 			string b = marshal_as<string, String^>(TCB->Text);
+			if (a.empty() || b.empty()) { PTB->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return; }
 			char E = a[0], T = b[0];
+			if (E == T) { PTB->Text = marshal_as<String^, string>("ERROR: Characters must be distinct!"); return; }
 
-			AffineCipher ac(E, T); string res = ac.decrypt(text);
+			AffineCipher ac(E, T); 
+			if (!ac.canDecrypt()) { PTB->Text = marshal_as<String^, string>("ERROR: Irreversible Cipher!"); return; }
+			string res = ac.decrypt(text);
 			PTB->Text = marshal_as<String^, string>(res);
 		}
 	private: 

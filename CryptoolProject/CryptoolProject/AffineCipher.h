@@ -7,6 +7,7 @@ using namespace std;
 
 class AffineCipher {
 
+	bool decryptable;
 	int a = 1, b = 0; AffineCipher() {}
 	bool isLower(char& c) { return c >= 'a' && c <= 'z'; }
 	bool isUpper(char& c) { return c >= 'A' && c <= 'Z'; }
@@ -14,16 +15,15 @@ class AffineCipher {
 
 public:
 
-	AffineCipher(int _a, int _b) : a(((_a % 26) + 26) % 26), b(((_b % 26) + 26) % 26) {}
+	AffineCipher(int _a, int _b) : a(((_a % 26) + 26) % 26), b(((_b % 26) + 26) % 26) { decryptable = modInv[a] != -1; }
 	AffineCipher(char mostFreq, char secondMostFreq) {
-		assert(mostFreq != secondMostFreq);
-		assert(isLower(mostFreq) || isUpper(mostFreq));
-		assert(isLower(secondMostFreq) || isUpper(secondMostFreq));
-
 		int F = mostFreq - (isLower(mostFreq) ? 'a' : 'A');
 		int S = secondMostFreq - (isLower(secondMostFreq) ? 'a' : 'A');
 		b = (3 * F + 24 * S) % 26; a = (7 * (S - F + 26)) % 26;
+		decryptable = modInv[a] != -1;
 	}
+
+	bool canDecrypt() { return decryptable; }
 
 	string encrypt(string s) {
 		int n = (int)s.size();
@@ -34,7 +34,6 @@ public:
 		return move(s);
 	}
 	string decrypt(string s) {
-		assert(modInv[a] != -1);
 		int n = (int)s.size(), A = modInv[a], B = (((-A * b) % 26) + 26) % 26;
 		for (int i = 0; i < n; i++) {
 			if (isLower(s[i])) { s[i] = (((s[i] - 'a') * A + B) % 26) + 'a'; }

@@ -31,18 +31,6 @@ public:
     }
 
     MonoAlphabeticCipher(string key) {
-        try {
-            if (key.size() != 26) { throw - 1; }
-            for (char& c : key) {
-                if (!isLower(c) && !isUpper(c)) { throw - 2; }
-                if (isUpper(c)) { c = c - 'A' + 'a'; }
-            }
-            if (set<char>(key.begin(), key.end()).size() != 26) { throw - 3; }
-        }
-        catch (int x) {
-            cout << "MonoAlphabeticCipher Exception " << x << '\n';
-        }
-
         for (int i = 0; i < 26; i++) encKey[i] = key[i] - 'a';
         for (int i = 0; i < 26; i++) decKey[encKey[i]] = i;
     }
