@@ -173,6 +173,9 @@
     <EmbeddedResource Include="MonoAlphabeticCipherGUI.resx">
       <DependentUpon>MonoAlphabeticCipherGUI.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VigenereCipherGUI.resx">
+      <DependentUpon>VigenereCipherGUI.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
