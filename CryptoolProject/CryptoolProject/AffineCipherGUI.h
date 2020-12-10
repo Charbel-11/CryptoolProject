@@ -1,7 +1,7 @@
 #pragma once
 #include "AffineCipher.h"
 #include <string>
-#include <msclr/marshal.h>
+#include <msclr/marshal_cppstd.h>
 
 namespace CryptoolProject {
 
@@ -40,22 +40,44 @@ namespace CryptoolProject {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^ PlaintextLabel;
+	private: System::Windows::Forms::Label^ PCLabel;
+	protected:
+
 	protected:
 	private: System::Windows::Forms::Label^ AffineCipherLabel;
-	private: System::Windows::Forms::TextBox^ PlainTextTB;
+	private: System::Windows::Forms::TextBox^ PCTB;
+
 	private: System::Windows::Forms::ComboBox^ ACB;
 
 	private: System::Windows::Forms::Label^ ALabel;
 	private: System::Windows::Forms::ComboBox^ BCB;
 
 	private: System::Windows::Forms::Label^ BLabel;
-	private: System::Windows::Forms::TextBox^ CiphertextTB;
+	private: System::Windows::Forms::TextBox^ CPTB;
 
-	private: System::Windows::Forms::Label^ CyphertextLabel;
+	private: System::Windows::Forms::Label^ CPLabel;
+
+
 
 	private: System::Windows::Forms::Button^ EncryptButton;
+
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Button^ DecryptButton;
+	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Button^ BackButton;
+	private: System::Windows::Forms::Button^ Decrypt2Button;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::TextBox^ PTB;
+
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::ComboBox^ TCB;
+
+	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::ComboBox^ ECB;
+	private: System::Windows::Forms::TextBox^ CTB;
+
+
+	private: System::Windows::Forms::Label^ label6;
 
 	private:
 		/// <summary>
@@ -70,45 +92,57 @@ namespace CryptoolProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->PlaintextLabel = (gcnew System::Windows::Forms::Label());
+			this->PCLabel = (gcnew System::Windows::Forms::Label());
 			this->AffineCipherLabel = (gcnew System::Windows::Forms::Label());
-			this->PlainTextTB = (gcnew System::Windows::Forms::TextBox());
+			this->PCTB = (gcnew System::Windows::Forms::TextBox());
 			this->ACB = (gcnew System::Windows::Forms::ComboBox());
 			this->ALabel = (gcnew System::Windows::Forms::Label());
 			this->BCB = (gcnew System::Windows::Forms::ComboBox());
 			this->BLabel = (gcnew System::Windows::Forms::Label());
-			this->CiphertextTB = (gcnew System::Windows::Forms::TextBox());
-			this->CyphertextLabel = (gcnew System::Windows::Forms::Label());
+			this->CPTB = (gcnew System::Windows::Forms::TextBox());
+			this->CPLabel = (gcnew System::Windows::Forms::Label());
 			this->EncryptButton = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->DecryptButton = (gcnew System::Windows::Forms::Button());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->BackButton = (gcnew System::Windows::Forms::Button());
+			this->Decrypt2Button = (gcnew System::Windows::Forms::Button());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->PTB = (gcnew System::Windows::Forms::TextBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->TCB = (gcnew System::Windows::Forms::ComboBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->ECB = (gcnew System::Windows::Forms::ComboBox());
+			this->CTB = (gcnew System::Windows::Forms::TextBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
-			// PlaintextLabel
+			// PCLabel
 			// 
-			this->PlaintextLabel->AutoSize = true;
-			this->PlaintextLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
-			this->PlaintextLabel->Location = System::Drawing::Point(58, 127);
-			this->PlaintextLabel->Name = L"PlaintextLabel";
-			this->PlaintextLabel->Size = System::Drawing::Size(73, 20);
-			this->PlaintextLabel->TabIndex = 0;
-			this->PlaintextLabel->Text = L"Plaintext";
+			this->PCLabel->AutoSize = true;
+			this->PCLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
+			this->PCLabel->Location = System::Drawing::Point(23, 127);
+			this->PCLabel->Name = L"PCLabel";
+			this->PCLabel->Size = System::Drawing::Size(154, 20);
+			this->PCLabel->TabIndex = 0;
+			this->PCLabel->Text = L"Plaintext/Ciphertext";
 			// 
 			// AffineCipherLabel
 			// 
 			this->AffineCipherLabel->AutoSize = true;
 			this->AffineCipherLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 30));
-			this->AffineCipherLabel->Location = System::Drawing::Point(169, 9);
+			this->AffineCipherLabel->Location = System::Drawing::Point(207, 9);
 			this->AffineCipherLabel->Name = L"AffineCipherLabel";
 			this->AffineCipherLabel->Size = System::Drawing::Size(314, 58);
 			this->AffineCipherLabel->TabIndex = 1;
 			this->AffineCipherLabel->Text = L"Affine Cipher";
 			// 
-			// PlainTextTB
+			// PCTB
 			// 
-			this->PlainTextTB->Location = System::Drawing::Point(137, 127);
-			this->PlainTextTB->Name = L"PlainTextTB";
-			this->PlainTextTB->Size = System::Drawing::Size(450, 22);
-			this->PlainTextTB->TabIndex = 2;
+			this->PCTB->Location = System::Drawing::Point(233, 127);
+			this->PCTB->Name = L"PCTB";
+			this->PCTB->Size = System::Drawing::Size(408, 22);
+			this->PCTB->TabIndex = 2;
 			// 
 			// ACB
 			// 
@@ -117,7 +151,7 @@ namespace CryptoolProject {
 				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8", L"9",
 					L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"17", L"18", L"19", L"20", L"21", L"22", L"23", L"24", L"25"
 			});
-			this->ACB->Location = System::Drawing::Point(137, 174);
+			this->ACB->Location = System::Drawing::Point(253, 170);
 			this->ACB->Name = L"ACB";
 			this->ACB->Size = System::Drawing::Size(88, 24);
 			this->ACB->TabIndex = 3;
@@ -126,7 +160,7 @@ namespace CryptoolProject {
 			// 
 			this->ALabel->AutoSize = true;
 			this->ALabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
-			this->ALabel->Location = System::Drawing::Point(113, 178);
+			this->ALabel->Location = System::Drawing::Point(229, 174);
 			this->ALabel->Name = L"ALabel";
 			this->ALabel->Size = System::Drawing::Size(20, 20);
 			this->ALabel->TabIndex = 4;
@@ -139,7 +173,7 @@ namespace CryptoolProject {
 				L"0", L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
 					L"9", L"10", L"11", L"12", L"13", L"14", L"15", L"16", L"17", L"18", L"19", L"20", L"21", L"22", L"23", L"24", L"25"
 			});
-			this->BCB->Location = System::Drawing::Point(329, 174);
+			this->BCB->Location = System::Drawing::Point(445, 170);
 			this->BCB->Name = L"BCB";
 			this->BCB->Size = System::Drawing::Size(88, 24);
 			this->BCB->TabIndex = 5;
@@ -148,33 +182,33 @@ namespace CryptoolProject {
 			// 
 			this->BLabel->AutoSize = true;
 			this->BLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
-			this->BLabel->Location = System::Drawing::Point(302, 178);
+			this->BLabel->Location = System::Drawing::Point(418, 174);
 			this->BLabel->Name = L"BLabel";
 			this->BLabel->Size = System::Drawing::Size(21, 20);
 			this->BLabel->TabIndex = 6;
 			this->BLabel->Text = L"B";
 			// 
-			// CiphertextTB
+			// CPTB
 			// 
-			this->CiphertextTB->Location = System::Drawing::Point(137, 233);
-			this->CiphertextTB->Name = L"CiphertextTB";
-			this->CiphertextTB->ReadOnly = true;
-			this->CiphertextTB->Size = System::Drawing::Size(450, 22);
-			this->CiphertextTB->TabIndex = 7;
+			this->CPTB->Location = System::Drawing::Point(233, 233);
+			this->CPTB->Name = L"CPTB";
+			this->CPTB->ReadOnly = true;
+			this->CPTB->Size = System::Drawing::Size(408, 22);
+			this->CPTB->TabIndex = 7;
 			// 
-			// CyphertextLabel
+			// CPLabel
 			// 
-			this->CyphertextLabel->AutoSize = true;
-			this->CyphertextLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
-			this->CyphertextLabel->Location = System::Drawing::Point(46, 235);
-			this->CyphertextLabel->Name = L"CyphertextLabel";
-			this->CyphertextLabel->Size = System::Drawing::Size(85, 20);
-			this->CyphertextLabel->TabIndex = 8;
-			this->CyphertextLabel->Text = L"Ciphertext";
+			this->CPLabel->AutoSize = true;
+			this->CPLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
+			this->CPLabel->Location = System::Drawing::Point(23, 235);
+			this->CPLabel->Name = L"CPLabel";
+			this->CPLabel->Size = System::Drawing::Size(154, 20);
+			this->CPLabel->TabIndex = 8;
+			this->CPLabel->Text = L"Ciphertext/Plaintext";
 			// 
 			// EncryptButton
 			// 
-			this->EncryptButton->Location = System::Drawing::Point(137, 276);
+			this->EncryptButton->Location = System::Drawing::Point(233, 276);
 			this->EncryptButton->Name = L"EncryptButton";
 			this->EncryptButton->Size = System::Drawing::Size(132, 33);
 			this->EncryptButton->TabIndex = 9;
@@ -182,31 +216,163 @@ namespace CryptoolProject {
 			this->EncryptButton->UseVisualStyleBackColor = true;
 			this->EncryptButton->Click += gcnew System::EventHandler(this, &AffineCipherGUI::EncryptButton_Click);
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			this->label1->Location = System::Drawing::Point(176, 86);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(375, 25);
+			this->label1->TabIndex = 11;
+			this->label1->Text = L"Encrypts/Decrypts according to Y = AX+B";
+			// 
+			// DecryptButton
+			// 
+			this->DecryptButton->Location = System::Drawing::Point(511, 276);
+			this->DecryptButton->Name = L"DecryptButton";
+			this->DecryptButton->Size = System::Drawing::Size(130, 33);
+			this->DecryptButton->TabIndex = 12;
+			this->DecryptButton->Text = L"Decrypt";
+			this->DecryptButton->UseVisualStyleBackColor = true;
+			this->DecryptButton->Click += gcnew System::EventHandler(this, &AffineCipherGUI::DecryptButton_Click);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			this->label2->Location = System::Drawing::Point(74, 372);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(579, 25);
+			this->label2->TabIndex = 13;
+			this->label2->Text = L"Decrypts given most two frequent letters in the encrypted alphabet";
+			// 
 			// BackButton
 			// 
-			this->BackButton->Location = System::Drawing::Point(421, 276);
+			this->BackButton->Location = System::Drawing::Point(511, 569);
 			this->BackButton->Name = L"BackButton";
-			this->BackButton->Size = System::Drawing::Size(132, 33);
-			this->BackButton->TabIndex = 10;
+			this->BackButton->Size = System::Drawing::Size(130, 33);
+			this->BackButton->TabIndex = 23;
 			this->BackButton->Text = L"Back";
 			this->BackButton->UseVisualStyleBackColor = true;
+			this->BackButton->Click += gcnew System::EventHandler(this, &AffineCipherGUI::BackButton_Click);
+			// 
+			// Decrypt2Button
+			// 
+			this->Decrypt2Button->Location = System::Drawing::Point(233, 569);
+			this->Decrypt2Button->Name = L"Decrypt2Button";
+			this->Decrypt2Button->Size = System::Drawing::Size(132, 33);
+			this->Decrypt2Button->TabIndex = 22;
+			this->Decrypt2Button->Text = L"Decrypt";
+			this->Decrypt2Button->UseVisualStyleBackColor = true;
+			this->Decrypt2Button->Click += gcnew System::EventHandler(this, &AffineCipherGUI::Decrypt2Button_Click);
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
+			this->label3->Location = System::Drawing::Point(23, 528);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(73, 20);
+			this->label3->TabIndex = 21;
+			this->label3->Text = L"Plaintext";
+			// 
+			// PTB
+			// 
+			this->PTB->Location = System::Drawing::Point(233, 526);
+			this->PTB->Name = L"PTB";
+			this->PTB->ReadOnly = true;
+			this->PTB->Size = System::Drawing::Size(408, 22);
+			this->PTB->TabIndex = 20;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
+			this->label4->Location = System::Drawing::Point(418, 467);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(19, 20);
+			this->label4->TabIndex = 19;
+			this->label4->Text = L"T";
+			// 
+			// TCB
+			// 
+			this->TCB->FormattingEnabled = true;
+			this->TCB->Items->AddRange(gcnew cli::array< System::Object^  >(26) {
+				L"A", L"B", L"C", L"D", L"E", L"F", L"G", L"H", L"I",
+					L"J", L"K", L"L", L"M", L"N", L"O", L"P", L"Q", L"R", L"S", L"T", L"U", L"V", L"W", L"X", L"Y", L"Z"
+			});
+			this->TCB->Location = System::Drawing::Point(445, 463);
+			this->TCB->Name = L"TCB";
+			this->TCB->Size = System::Drawing::Size(88, 24);
+			this->TCB->TabIndex = 18;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
+			this->label5->Location = System::Drawing::Point(229, 467);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(20, 20);
+			this->label5->TabIndex = 17;
+			this->label5->Text = L"E";
+			// 
+			// ECB
+			// 
+			this->ECB->FormattingEnabled = true;
+			this->ECB->Items->AddRange(gcnew cli::array< System::Object^  >(26) {
+				L"A", L"B", L"C", L"D", L"E", L"F", L"G", L"H", L"I",
+					L"J", L"K", L"L", L"M", L"N", L"O", L"P", L"Q", L"R", L"S", L"T", L"U", L"V", L"W", L"X", L"Y", L"Z"
+			});
+			this->ECB->Location = System::Drawing::Point(253, 463);
+			this->ECB->Name = L"ECB";
+			this->ECB->Size = System::Drawing::Size(88, 24);
+			this->ECB->TabIndex = 16;
+			// 
+			// CTB
+			// 
+			this->CTB->Location = System::Drawing::Point(233, 420);
+			this->CTB->Name = L"CTB";
+			this->CTB->Size = System::Drawing::Size(408, 22);
+			this->CTB->TabIndex = 15;
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
+			this->label6->Location = System::Drawing::Point(23, 420);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(85, 20);
+			this->label6->TabIndex = 14;
+			this->label6->Text = L"Ciphertext";
 			// 
 			// AffineCipherGUI
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(656, 411);
+			this->ClientSize = System::Drawing::Size(722, 640);
 			this->Controls->Add(this->BackButton);
+			this->Controls->Add(this->Decrypt2Button);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->PTB);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->TCB);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->ECB);
+			this->Controls->Add(this->CTB);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->DecryptButton);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->EncryptButton);
-			this->Controls->Add(this->CyphertextLabel);
-			this->Controls->Add(this->CiphertextTB);
+			this->Controls->Add(this->CPLabel);
+			this->Controls->Add(this->CPTB);
 			this->Controls->Add(this->BLabel);
 			this->Controls->Add(this->BCB);
 			this->Controls->Add(this->ALabel);
 			this->Controls->Add(this->ACB);
-			this->Controls->Add(this->PlainTextTB);
+			this->Controls->Add(this->PCTB);
 			this->Controls->Add(this->AffineCipherLabel);
-			this->Controls->Add(this->PlaintextLabel);
+			this->Controls->Add(this->PCLabel);
 			this->Name = L"AffineCipherGUI";
 			this->Text = L"AffineCipherGUI";
 			this->ResumeLayout(false);
@@ -216,13 +382,37 @@ namespace CryptoolProject {
 #pragma endregion
 	private: 
 		System::Void EncryptButton_Click(System::Object^ sender, System::EventArgs^ e) {
-			/*string text = marshal_as<string, String^>(PlainTextTB->Text);
+			string text = marshal_as<string, String^>(PCTB->Text);
 			string a = marshal_as<string, String^>(ACB->Text);
 			string b = marshal_as<string, String^>(BCB->Text);
 			int A = stoi(a), B = stoi(b);
 
 			AffineCipher ac(A, B); string res = ac.encrypt(text);
-			CiphertextTB->Text = marshal_as<String^, string>(res);*/
+			CPTB->Text = marshal_as<String^, string>(res);
+		}
+	private: 
+		System::Void DecryptButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			string text = marshal_as<string, String^>(PCTB->Text);
+			string a = marshal_as<string, String^>(ACB->Text);
+			string b = marshal_as<string, String^>(BCB->Text);
+			int A = stoi(a), B = stoi(b);
+
+			AffineCipher ac(A, B); string res = ac.decrypt(text);
+			CPTB->Text = marshal_as<String^, string>(res);
+		}
+	private: 
+		System::Void Decrypt2Button_Click(System::Object^ sender, System::EventArgs^ e) {
+			string text = marshal_as<string, String^>(CTB->Text);
+			string a = marshal_as<string, String^>(ECB->Text);
+			string b = marshal_as<string, String^>(TCB->Text);
+			char E = a[0], T = b[0];
+
+			AffineCipher ac(E, T); string res = ac.decrypt(text);
+			PTB->Text = marshal_as<String^, string>(res);
+		}
+	private: 
+		System::Void BackButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			parent->Show(); this->Close();
 		}
 	};
 }

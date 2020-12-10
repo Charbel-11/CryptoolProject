@@ -34,6 +34,7 @@ public:
 		return move(s);
 	}
 	string decrypt(string s) {
+		assert(modInv[a] != -1);
 		int n = (int)s.size(), A = modInv[a], B = (((-A * b) % 26) + 26) % 26;
 		for (int i = 0; i < n; i++) {
 			if (isLower(s[i])) { s[i] = (((s[i] - 'a') * A + B) % 26) + 'a'; }
