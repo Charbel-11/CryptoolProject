@@ -49,6 +49,21 @@
     <Filter Include="GUI\Classical Encryption Techniques\Affine Cipher">
       <UniqueIdentifier>{46779980-4b61-44d8-8f75-897d32de42e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI\Classical Encryption Techniques\Mono-Alphabetic Cipher">
+      <UniqueIdentifier>{a24114ea-9bb9-4903-9e54-3854de184eab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Classical Encryption Techniques\Vigenere Cipher">
+      <UniqueIdentifier>{704ed4db-1cc8-4076-a7b7-3add4626f7b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Classical Encryption Techniques\Playfair Cipher">
+      <UniqueIdentifier>{b7c254d0-3c5b-4672-9246-4b20081fe3c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Classical Encryption Techniques\Extended Euclidean Algorithm">
+      <UniqueIdentifier>{0834ee16-0e26-4817-8317-58828ba12371}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Classical Encryption Techniques\Hill Cipher">
+      <UniqueIdentifier>{be74005d-6cae-47d8-bf09-d164b1b726bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AffineCipher.h">
@@ -89,6 +104,21 @@
     </ClInclude>
     <ClInclude Include="AffineCipherGUI.h">
       <Filter>GUI\Classical Encryption Techniques\Affine Cipher</Filter>
+    </ClInclude>
+    <ClInclude Include="MonoAlphabeticCipherGUI.h">
+      <Filter>GUI\Classical Encryption Techniques\Mono-Alphabetic Cipher</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedGCDGUI.h">
+      <Filter>GUI\Classical Encryption Techniques\Extended Euclidean Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayfairCipherGUI.h">
+      <Filter>GUI\Classical Encryption Techniques\Playfair Cipher</Filter>
+    </ClInclude>
+    <ClInclude Include="VigenereCipherGUI.h">
+      <Filter>GUI\Classical Encryption Techniques\Vigenere Cipher</Filter>
+    </ClInclude>
+    <ClInclude Include="HillCipherGUI.h">
+      <Filter>GUI\Classical Encryption Techniques\Hill Cipher</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

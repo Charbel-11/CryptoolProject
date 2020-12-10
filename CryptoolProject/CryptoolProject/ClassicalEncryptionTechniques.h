@@ -1,5 +1,10 @@
 #pragma once
 #include "AffineCipherGUI.h"
+#include "MonoAlphabeticCipherGUI.h"
+#include "ExtendedGCDGUI.h"
+#include "PlayfairCipherGUI.h"
+#include "VigenereCipherGUI.h"
+#include "HillCipherGUI.h"
 
 namespace CryptoolProject {
 
@@ -103,6 +108,7 @@ namespace CryptoolProject {
 			this->PCButton->TabIndex = 2;
 			this->PCButton->Text = L"Playfair Cipher";
 			this->PCButton->UseVisualStyleBackColor = true;
+			this->PCButton->Click += gcnew System::EventHandler(this, &ClassicalEncryptionTechniques::PCButton_Click);
 			// 
 			// HCButton
 			// 
@@ -112,6 +118,7 @@ namespace CryptoolProject {
 			this->HCButton->TabIndex = 3;
 			this->HCButton->Text = L"Hill Cipher";
 			this->HCButton->UseVisualStyleBackColor = true;
+			this->HCButton->Click += gcnew System::EventHandler(this, &ClassicalEncryptionTechniques::HCButton_Click);
 			// 
 			// EEAButton
 			// 
@@ -121,6 +128,7 @@ namespace CryptoolProject {
 			this->EEAButton->TabIndex = 4;
 			this->EEAButton->Text = L"Extended Euclidean Algorithm";
 			this->EEAButton->UseVisualStyleBackColor = true;
+			this->EEAButton->Click += gcnew System::EventHandler(this, &ClassicalEncryptionTechniques::EEAButton_Click);
 			// 
 			// MACButton
 			// 
@@ -130,6 +138,7 @@ namespace CryptoolProject {
 			this->MACButton->TabIndex = 5;
 			this->MACButton->Text = L"Mono-Alphabetic Cipher";
 			this->MACButton->UseVisualStyleBackColor = true;
+			this->MACButton->Click += gcnew System::EventHandler(this, &ClassicalEncryptionTechniques::MACButton_Click);
 			// 
 			// VCButton
 			// 
@@ -139,6 +148,7 @@ namespace CryptoolProject {
 			this->VCButton->TabIndex = 6;
 			this->VCButton->Text = L"Vigenere Cipher";
 			this->VCButton->UseVisualStyleBackColor = true;
+			this->VCButton->Click += gcnew System::EventHandler(this, &ClassicalEncryptionTechniques::VCButton_Click);
 			// 
 			// BackButton
 			// 
@@ -175,8 +185,32 @@ namespace CryptoolProject {
 			AffineCipherGUI^ ACForm = gcnew AffineCipherGUI(this);
 			ACForm->Show(); this->Hide();
 		}
-
 	private: 
+		System::Void MACButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			MonoAlphabeticCipherGUI^ MACForm = gcnew MonoAlphabeticCipherGUI(this);
+			MACForm->Show(); this->Hide();
+		}
+	private: 
+		System::Void VCButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			VigenereCipherGUI^ VCForm = gcnew VigenereCipherGUI(this);
+			VCForm->Show(); this->Hide();
+		}
+	private: 
+		System::Void PCButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			PlayfairCipherGUI^ PCForm = gcnew PlayfairCipherGUI(this);
+			PCForm->Show(); this->Hide();
+		}
+	private: 
+		System::Void EEAButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			ExtendedGCDGUI^ EGForm = gcnew ExtendedGCDGUI(this);
+			EGForm->Show(); this->Hide();
+		}
+	private: 
+		System::Void HCButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			HillCipherGUI^ HCForm = gcnew HillCipherGUI(this);
+			HCForm->Show(); this->Hide();
+		}
+	private:
 		System::Void BackButton_Click(System::Object^ sender, System::EventArgs^ e) {
 			parent->Show(); this->Close();
 		}

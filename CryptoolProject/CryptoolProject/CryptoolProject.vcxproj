@@ -125,15 +125,30 @@
     </ClInclude>
     <ClInclude Include="DES.h" />
     <ClInclude Include="ExtendedGCD.h" />
+    <ClInclude Include="ExtendedGCDGUI.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="HillCipherGUI.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MonoAlphabeticCipher.h" />
+    <ClInclude Include="MonoAlphabeticCipherGUI.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="NumberTheory.h" />
     <ClInclude Include="PlayfairCipher.h" />
+    <ClInclude Include="PlayfairCipherGUI.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Polynomial ArithmeticEasy.h" />
     <ClInclude Include="Polynomial ArithmeticHard.h" />
     <ClInclude Include="VigenereCipher.h" />
+    <ClInclude Include="VigenereCipherGUI.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
