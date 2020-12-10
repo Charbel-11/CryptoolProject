@@ -64,6 +64,15 @@ public:
 	PlayfairCipher() : table(5, "aaaaa"), row(26), col(26) {}
 	PlayfairCipher(string key) : PlayfairCipher() { initializePlayfair(key); }
 
+	string getKey() {
+		string res = ""; 
+		for (auto& x : table) {
+			for (auto& y : x) { res.push_back(y - 'a' + 'A'); res.push_back(' '); }
+			res += "\r\n";
+		}
+		return move(res);
+	}
+
 	string encrypt(string message) {
 		string cur; int n = (int)message.size();
 		for (int i = 0; i < n; i++) {
