@@ -288,11 +288,11 @@ namespace CryptoolProject {
 			multiLine = true;
 		}
 
-		string o = polyA.printAsBinary(res1, degree - 1, 8);
+		string o = polyA.printAsBinary(res1, degree, 8);
 		if (multiLine) {
 			o = "Quotient: " + o;
 			o += " \n\rRemainder: ";
-			o += polyA.printAsBinary(res2, degree - 1, 8);
+			o += polyA.printAsBinary(res2, degree, 8);
 		}
 		output->Text = marshal_as<String^, string>(o);
 	}
