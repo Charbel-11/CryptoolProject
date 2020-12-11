@@ -173,6 +173,9 @@
     <EmbeddedResource Include="ExtendedGCDGUI.resx">
       <DependentUpon>ExtendedGCDGUI.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HillCipherGUI.resx">
+      <DependentUpon>HillCipherGUI.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
     </EmbeddedResource>
