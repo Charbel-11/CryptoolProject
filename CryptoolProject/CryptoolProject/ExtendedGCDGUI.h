@@ -261,10 +261,10 @@ namespace CryptoolProject {
 	private: 
 		System::Void ComputeButton_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->ErrorLabel->Text = L"";
-			if (!System::Text::RegularExpressions::Regex::IsMatch(ATB->Text, "^[-0-9]*.[.0-9].[0-9]*$")) {
+			if (!System::Text::RegularExpressions::Regex::IsMatch(ATB->Text, "[-]?[0-9]+")) {
 				ErrorLabel->Text = marshal_as<String^, string>("ERROR: Invalid Input!"); return;
 			}
-			if (!System::Text::RegularExpressions::Regex::IsMatch(BTB->Text, "^[-0-9]*.[.0-9].[0-9]*$")) {
+			if (!System::Text::RegularExpressions::Regex::IsMatch(BTB->Text, "[-]?[0-9]+")) {
 				ErrorLabel->Text = marshal_as<String^, string>("ERROR: Invalid Input!"); return;
 			}
 			string a = marshal_as<string, String^>(ATB->Text);

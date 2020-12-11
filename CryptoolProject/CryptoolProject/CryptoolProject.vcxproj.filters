@@ -120,6 +120,9 @@
     <ClInclude Include="HillCipherGUI.h">
       <Filter>GUI\Classical Encryption Techniques\Hill Cipher</Filter>
     </ClInclude>
+    <ClInclude Include="PolyArithmetic.h">
+      <Filter>GUI\Polynomial Arithmetic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainForm.cpp">

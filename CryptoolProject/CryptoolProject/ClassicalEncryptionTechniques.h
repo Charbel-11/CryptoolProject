@@ -25,9 +25,6 @@ namespace CryptoolProject {
 		{
 			parent = _parent;
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
 		}
 
 	protected:

@@ -138,6 +138,9 @@
     <ClInclude Include="MonoAlphabeticCipherGUI.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PolyArithmetic.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="NumberTheory.h" />
     <ClInclude Include="PlayfairCipher.h" />
     <ClInclude Include="PlayfairCipherGUI.h">
@@ -178,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PlayfairCipherGUI.resx">
       <DependentUpon>PlayfairCipherGUI.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PolyArithmetic.resx">
+      <DependentUpon>PolyArithmetic.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VigenereCipherGUI.resx">
       <DependentUpon>VigenereCipherGUI.h</DependentUpon>
