@@ -67,10 +67,10 @@ void printDES(ull k, int len, int sp) {
 #pragma endregion
 
 struct DESRes {
-	vector<ull> keys, L, R;
+	vector<ull> keys, L, R, expansion, keyMixing, substitution, permutation, roundResult;
 	ull finalRes = 0; DESRes() {}
-	DESRes(vector<ull>& _keys, vector<ull>& _L, vector<ull>& _R, ull& _finalRes) :
-		keys(_keys), L(_L), R(_R), finalRes(_finalRes) {}
+	DESRes(vector<ull>& _keys, vector<ull>& _L, vector<ull>& _R, vector<ull>& _expansion, vector<ull>& _keyMixing, vector<ull>&  _substitution, vector<ull>& _permutation, ull& _finalRes) :
+		keys(_keys), L(_L), R(_R), expansion(_expansion), keyMixing(_keyMixing), substitution(_substitution), permutation(_permutation), finalRes(_finalRes) {}
 };
 
 class DES {
@@ -101,25 +101,34 @@ class DES {
 		return sB[row][col];
 	}
 
-	ull F(ull block, ull fKey) {
+	ull F(ull block, ull fKey, vector<ull>& expansion, vector<ull>& keyMixing, vector<ull>& substitution, vector<ull>& permutation) {
+		//Expansion
 		ull e = 0; for (int i = 0; i < 48; i++)
 			e |= (1ull << (47 - i)) * ((block >> (32 - E[i])) & 1);
+		expansion.push_back(e);
 
+		//Key mixing
 		ull B = fKey ^ e, SB = 0;
+		keyMixing.push_back(B);
+
+		//Substitution
 		int rightShift = 42, leftShift = 28;
 		for (int i = 0; i < 8; i++) {
 			SB |= sBox((B >> rightShift) & 0x3F, desS[i]) << leftShift;
 			rightShift -= 6; leftShift -= 4;
 		}
+		substitution.push_back(SB);
 
+		//Permutation
 		ull res = 0; for (int i = 0; i < 32; i++)
 			res |= (1ull << (31 - i)) * ((SB >> (32 - P[i])) & 1);
+		permutation.push_back(res);
 
 		return res;
 	}
 
 	DESRes dataEncryptionAlgorithm(ull text, vector<ull>& keys) {
-		vector<ull> _L, _R;
+		vector<ull> _L, _R, _expansion, _keyMixing, _substitution, _permutation;
 		ull LR0 = 0; for (int i = 0; i < 64; i++)
 			LR0 |= (1ull << (63 - i)) * ((text >> (64 - IP[i])) & 1);
 
@@ -127,7 +136,7 @@ class DES {
 		ull L = LR0 >> 32, R = LR0 & mask; 
 		_L.push_back(L); _R.push_back(R);
 		for (int i = 0; i < 16; i++) {
-			ull newL = R, newR = L ^ F(R, keys[i]);
+			ull newL = R, newR = L ^ F(R, keys[i], _expansion, _keyMixing, _substitution, _permutation);
 			_L.push_back(L = newL); _R.push_back(R = newR);
 		}
 
@@ -135,7 +144,7 @@ class DES {
 		for (int i = 0; i < 64; i++)
 			res |= (1ull << (63 - i)) * ((RL >> (64 - PI[i])) & 1);
 
-		return DESRes(keys, _L, _R, res);
+		return DESRes(keys, _L, _R, _expansion, _keyMixing, _substitution, _permutation, res);
 	}
 
 public:
