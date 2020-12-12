@@ -147,11 +147,11 @@ namespace CryptoolProject {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(76, 212);
+			this->label3->Location = System::Drawing::Point(33, 212);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(71, 25);
+			this->label3->Size = System::Drawing::Size(125, 25);
 			this->label3->TabIndex = 7;
-			this->label3->Text = L"Input 1";
+			this->label3->Text = L"Input 1 (Hex)";
 			// 
 			// input1
 			// 
@@ -162,9 +162,9 @@ namespace CryptoolProject {
 			// 
 			// input2
 			// 
-			this->input2->Location = System::Drawing::Point(547, 211);
+			this->input2->Location = System::Drawing::Point(562, 211);
 			this->input2->Name = L"input2";
-			this->input2->Size = System::Drawing::Size(173, 26);
+			this->input2->Size = System::Drawing::Size(205, 26);
 			this->input2->TabIndex = 10;
 			// 
 			// label4
@@ -172,11 +172,11 @@ namespace CryptoolProject {
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(436, 212);
+			this->label4->Location = System::Drawing::Point(428, 212);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(71, 25);
+			this->label4->Size = System::Drawing::Size(125, 25);
 			this->label4->TabIndex = 9;
-			this->label4->Text = L"Input 2";
+			this->label4->Text = L"Input 2 (Hex)";
 			// 
 			// label5
 			// 
@@ -185,13 +185,13 @@ namespace CryptoolProject {
 				static_cast<System::Byte>(0)));
 			this->label5->Location = System::Drawing::Point(72, 308);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(145, 25);
+			this->label5->Size = System::Drawing::Size(125, 25);
 			this->label5->TabIndex = 11;
-			this->label5->Text = L"Output (Binary)";
+			this->label5->Text = L"Output (Hex)";
 			// 
 			// output
 			// 
-			this->output->Location = System::Drawing::Point(278, 271);
+			this->output->Location = System::Drawing::Point(267, 271);
 			this->output->Multiline = true;
 			this->output->Name = L"output";
 			this->output->ReadOnly = true;
@@ -248,22 +248,21 @@ namespace CryptoolProject {
 		string operation = marshal_as<string, String^>(op->Text);
 		string op1Text = marshal_as<string, String^>(input1->Text);
 		string op2Text = marshal_as<string, String^>(input2->Text); 
-		if (op1Text.empty() || degreeText.empty() || operation.empty()) {
+		if (op1Text.empty() || degreeText.empty() || operation.empty() || (input2->Enabled && op2Text.empty())) {
 			output->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return; 
 		}
-		if (!System::Text::RegularExpressions::Regex::IsMatch(input1->Text, "[-]?[0-9]+")) {
+		if (!System::Text::RegularExpressions::Regex::IsMatch(input1->Text, "[0-9a-fA-F]+")) {
 			output->Text = marshal_as<String^, string>("ERROR: Invalid Input!"); return;
 		}		
 		if (!input2->Enabled) { op2Text = "0"; }
-		else if (!System::Text::RegularExpressions::Regex::IsMatch(input2->Text, "[-]?[0-9]+")) {
+		else if (!System::Text::RegularExpressions::Regex::IsMatch(input2->Text, "[0-9a-fA-F]+")) {
 			output->Text = marshal_as<String^, string>("ERROR: Invalid Input!"); return;
 		}
 
 		int degree = stoi(degreeText);
-		//Handles up to 64 bits, for more need to implement string decimal -> binary conversion
-		bitset<SZ> op1BS = bitset<SZ>(stoll(op1Text));
-		bitset<SZ> op2BS = bitset<SZ>(stoll(op2Text));
 		polyArithmeticLong polyA;
+		bitset<SZ> op1BS = polyA.hexToBitset(op1Text);
+		bitset<SZ> op2BS = polyA.hexToBitset(op2Text);
 		polyA.setMod(degree);
 		bitset<SZ> res1, res2; bool multiLine = false;
 		if (operation == "Inverse") {
@@ -288,11 +287,11 @@ namespace CryptoolProject {
 			multiLine = true;
 		}
 
-		string o = polyA.printAsBinary(res1, degree, 8);
+		string o = polyA.toHex(res1, degree, 8);
 		if (multiLine) {
 			o = "Quotient: " + o;
-			o += " \n\rRemainder: ";
-			o += polyA.printAsBinary(res2, degree, 8);
+			o += "\r\nRemainder: ";
+			o += polyA.toHex(res2, degree, 8);
 		}
 		output->Text = marshal_as<String^, string>(o);
 	}
