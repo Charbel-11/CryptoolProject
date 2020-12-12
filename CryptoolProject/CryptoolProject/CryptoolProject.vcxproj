@@ -123,6 +123,9 @@
     <ClInclude Include="AffineCipherGUI.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ChineseRemainder.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ClassicalEncryptionTechniques.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -134,10 +137,16 @@
     <ClInclude Include="ExtendedGCDGUI.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="fastexp.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="HillCipherGUI.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MainForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MillerRabin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MonoAlphabeticCipher.h" />
@@ -147,13 +156,21 @@
     <ClInclude Include="PolyArithmetic.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="NumberTheory.h" />
+    <ClInclude Include="NumberTheory.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PlayfairCipher.h" />
     <ClInclude Include="PlayfairCipherGUI.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Polynomial ArithmeticEasy.h" />
     <ClInclude Include="Polynomial ArithmeticHard.h" />
+    <ClInclude Include="PrimeFactorization.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Totient.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="VigenereCipher.h" />
     <ClInclude Include="VigenereCipherGUI.h">
       <FileType>CppForm</FileType>
@@ -167,7 +184,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ChineseRemainder.cpp" />
     <ClCompile Include="MainForm.cpp" />
+    <ClCompile Include="MillerRabin.cpp" />
+    <ClCompile Include="PrimeFactorization.cpp" />
+    <ClCompile Include="Totient.cpp" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AdvancedEncryptionStandard.resx">
@@ -185,6 +206,9 @@
     <EmbeddedResource Include="ExtendedGCDGUI.resx">
       <DependentUpon>ExtendedGCDGUI.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="fastexp.resx">
+      <DependentUpon>fastexp.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HillCipherGUI.resx">
       <DependentUpon>HillCipherGUI.h</DependentUpon>
     </EmbeddedResource>
@@ -194,11 +218,17 @@
     <EmbeddedResource Include="MonoAlphabeticCipherGUI.resx">
       <DependentUpon>MonoAlphabeticCipherGUI.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NumberTheory.resx">
+      <DependentUpon>NumberTheory.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PlayfairCipherGUI.resx">
       <DependentUpon>PlayfairCipherGUI.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PolyArithmetic.resx">
       <DependentUpon>PolyArithmetic.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrimeFactorization.resx">
+      <DependentUpon>PrimeFactorization.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VigenereCipherGUI.resx">
       <DependentUpon>VigenereCipherGUI.h</DependentUpon>

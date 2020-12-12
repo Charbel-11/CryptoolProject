@@ -3,6 +3,7 @@
 #include "PolyArithmetic.h"
 #include "DataEncryptionStandard.h"
 #include "AdvancedEncryptionStandard.h"
+#include "NumberTheory.h"
 
 namespace CryptoolProject {
 
@@ -72,19 +73,18 @@ namespace CryptoolProject {
 			// 
 			this->CryptoolLabel->AutoSize = true;
 			this->CryptoolLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 30));
-			this->CryptoolLabel->Location = System::Drawing::Point(180, 7);
-			this->CryptoolLabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->CryptoolLabel->Location = System::Drawing::Point(270, 11);
 			this->CryptoolLabel->Name = L"CryptoolLabel";
-			this->CryptoolLabel->Size = System::Drawing::Size(170, 46);
+			this->CryptoolLabel->Size = System::Drawing::Size(253, 69);
 			this->CryptoolLabel->TabIndex = 0;
 			this->CryptoolLabel->Text = L"Cryptool";
 			// 
 			// CETButton
 			// 
-			this->CETButton->Location = System::Drawing::Point(9, 87);
-			this->CETButton->Margin = System::Windows::Forms::Padding(2, 3, 2, 3);
+			this->CETButton->Location = System::Drawing::Point(14, 134);
+			this->CETButton->Margin = System::Windows::Forms::Padding(3, 5, 3, 5);
 			this->CETButton->Name = L"CETButton";
-			this->CETButton->Size = System::Drawing::Size(215, 29);
+			this->CETButton->Size = System::Drawing::Size(322, 45);
 			this->CETButton->TabIndex = 1;
 			this->CETButton->Text = L"Classical Encryption Techniques";
 			this->CETButton->UseVisualStyleBackColor = true;
@@ -92,10 +92,10 @@ namespace CryptoolProject {
 			// 
 			// AESButton
 			// 
-			this->AESButton->Location = System::Drawing::Point(286, 144);
-			this->AESButton->Margin = System::Windows::Forms::Padding(2, 3, 2, 3);
+			this->AESButton->Location = System::Drawing::Point(429, 222);
+			this->AESButton->Margin = System::Windows::Forms::Padding(3, 5, 3, 5);
 			this->AESButton->Name = L"AESButton";
-			this->AESButton->Size = System::Drawing::Size(215, 29);
+			this->AESButton->Size = System::Drawing::Size(322, 45);
 			this->AESButton->TabIndex = 4;
 			this->AESButton->Text = L"Advanced Encryption Standard (AES)";
 			this->AESButton->UseVisualStyleBackColor = true;
@@ -103,10 +103,10 @@ namespace CryptoolProject {
 			// 
 			// PAButton
 			// 
-			this->PAButton->Location = System::Drawing::Point(9, 144);
-			this->PAButton->Margin = System::Windows::Forms::Padding(2, 3, 2, 3);
+			this->PAButton->Location = System::Drawing::Point(14, 222);
+			this->PAButton->Margin = System::Windows::Forms::Padding(3, 5, 3, 5);
 			this->PAButton->Name = L"PAButton";
-			this->PAButton->Size = System::Drawing::Size(215, 29);
+			this->PAButton->Size = System::Drawing::Size(322, 45);
 			this->PAButton->TabIndex = 3;
 			this->PAButton->Text = L"Polynomial Arithmetic";
 			this->PAButton->UseVisualStyleBackColor = true;
@@ -114,10 +114,10 @@ namespace CryptoolProject {
 			// 
 			// DESButton
 			// 
-			this->DESButton->Location = System::Drawing::Point(286, 87);
-			this->DESButton->Margin = System::Windows::Forms::Padding(2, 3, 2, 3);
+			this->DESButton->Location = System::Drawing::Point(429, 134);
+			this->DESButton->Margin = System::Windows::Forms::Padding(3, 5, 3, 5);
 			this->DESButton->Name = L"DESButton";
-			this->DESButton->Size = System::Drawing::Size(215, 29);
+			this->DESButton->Size = System::Drawing::Size(322, 45);
 			this->DESButton->TabIndex = 2;
 			this->DESButton->Text = L"Data Encryption Standard (DES)";
 			this->DESButton->UseVisualStyleBackColor = true;
@@ -125,26 +125,27 @@ namespace CryptoolProject {
 			// 
 			// NTButton
 			// 
-			this->NTButton->Location = System::Drawing::Point(151, 201);
-			this->NTButton->Margin = System::Windows::Forms::Padding(2, 3, 2, 3);
+			this->NTButton->Location = System::Drawing::Point(226, 309);
+			this->NTButton->Margin = System::Windows::Forms::Padding(3, 5, 3, 5);
 			this->NTButton->Name = L"NTButton";
-			this->NTButton->Size = System::Drawing::Size(215, 29);
+			this->NTButton->Size = System::Drawing::Size(322, 45);
 			this->NTButton->TabIndex = 5;
 			this->NTButton->Text = L"Number Theory";
 			this->NTButton->UseVisualStyleBackColor = true;
+			this->NTButton->Click += gcnew System::EventHandler(this, &MainForm::NTButton_Click);
 			// 
 			// MainForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(513, 302);
+			this->ClientSize = System::Drawing::Size(770, 465);
 			this->Controls->Add(this->NTButton);
 			this->Controls->Add(this->DESButton);
 			this->Controls->Add(this->PAButton);
 			this->Controls->Add(this->AESButton);
 			this->Controls->Add(this->CETButton);
 			this->Controls->Add(this->CryptoolLabel);
-			this->Margin = System::Windows::Forms::Padding(2, 3, 2, 3);
+			this->Margin = System::Windows::Forms::Padding(3, 5, 3, 5);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
 			this->ResumeLayout(false);
@@ -169,5 +170,9 @@ namespace CryptoolProject {
 		AdvancedEncryptionStandard^ AESForm = gcnew AdvancedEncryptionStandard(this);
 		AESForm->Show(); this->Hide();
 	}
+private: System::Void NTButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	NumberTheory^ AESForm = gcnew NumberTheory();
+	AESForm->Show(); this->Hide();
+}
 };
 }

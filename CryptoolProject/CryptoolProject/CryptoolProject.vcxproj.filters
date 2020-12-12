@@ -64,6 +64,21 @@
     <Filter Include="GUI\Classical Encryption Techniques\Hill Cipher">
       <UniqueIdentifier>{be74005d-6cae-47d8-bf09-d164b1b726bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI\Number Theory\fastexp">
+      <UniqueIdentifier>{2ba27b7e-6586-44a7-8214-ccc9b34031de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Number Theory\PrimeFactorization">
+      <UniqueIdentifier>{76ecb2bb-5c3b-4a4f-9dde-56c194689ac0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Number Theory\ChineseRemainder">
+      <UniqueIdentifier>{872296cc-8ea9-46de-8dd9-faf745688a1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Number Theory\Totient">
+      <UniqueIdentifier>{af9fd402-3e0c-4a48-995f-d139decf99c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Number Theory\MillerRabin">
+      <UniqueIdentifier>{3bfd51e9-078c-483e-a19c-c56dae54af2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AffineCipher.h">
@@ -129,10 +144,37 @@
     <ClInclude Include="AdvancedEncryptionStandard.h">
       <Filter>GUI\Advanced Encryption Standard</Filter>
     </ClInclude>
+    <ClInclude Include="fastexp.h">
+      <Filter>GUI\Number Theory\fastexp</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimeFactorization.h">
+      <Filter>GUI\Number Theory\PrimeFactorization</Filter>
+    </ClInclude>
+    <ClInclude Include="ChineseRemainder.h">
+      <Filter>GUI\Number Theory\ChineseRemainder</Filter>
+    </ClInclude>
+    <ClInclude Include="Totient.h">
+      <Filter>GUI\Number Theory\Totient</Filter>
+    </ClInclude>
+    <ClInclude Include="MillerRabin.h">
+      <Filter>GUI\Number Theory\MillerRabin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainForm.cpp">
       <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimeFactorization.cpp">
+      <Filter>GUI\Number Theory\PrimeFactorization</Filter>
+    </ClCompile>
+    <ClCompile Include="ChineseRemainder.cpp">
+      <Filter>GUI\Number Theory\ChineseRemainder</Filter>
+    </ClCompile>
+    <ClCompile Include="Totient.cpp">
+      <Filter>GUI\Number Theory\Totient</Filter>
+    </ClCompile>
+    <ClCompile Include="MillerRabin.cpp">
+      <Filter>GUI\Number Theory\MillerRabin</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
