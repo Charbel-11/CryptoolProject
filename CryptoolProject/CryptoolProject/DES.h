@@ -47,6 +47,7 @@ vector<int> P = { 16, 7, 20, 21, 29, 12, 28, 17, 1, 15, 23, 26, 5, 18, 31, 10, 2
 #pragma endregion
 
 #pragma region Functions
+
 string toBinaryDES(ull x, int len) {
 	string res = "";
 	while (x) { res.push_back((x & 1) + '0'); x >>= 1; }
@@ -61,22 +62,6 @@ void printDES(ull k, int len, int sp) {
 		cout << K[i];
 	}
 	cout << '\n' << '\n';
-}
-
-string toHexDES(ull x) {
-	string res; string HEXDES = "0123456789ABCDEF";
-	for (int i = 0; i < 16; i++, x >>= 4)
-		res.push_back(HEXDES[x & 0xF]);
-	reverse(res.begin(), res.end());
-	return move(res);
-}
-
-ull fromHexDES(string h) {
-	string HEXDES = "0123456789ABCDEF";
-	ull res = 0, first = find(HEXDES.begin(), HEXDES.end(), h[0]) - HEXDES.begin();
-	for (int i = 1; i < 16; i++, res <<= 4)
-		res += find(HEXDES.begin(), HEXDES.end(), h[i]) - HEXDES.begin();
-	return (res >> 4) | ((1ull << 60) * first);
 }
 
 #pragma endregion
@@ -155,17 +140,33 @@ class DES {
 
 public:
 
-	DES(ull _key) : key(_key) {
+	DES(string _key) : key(fromHexDES(_key)) {
 		decKeys = encKeys = generateKeys();
 		reverse(decKeys.begin(), decKeys.end());
 	}
 
-	ull encryptDES(ull text) {
-		return dataEncryptionAlgorithm(text, encKeys).finalRes;
+	string toHexDES(ull x) {
+		string res; string HEXDES = "0123456789ABCDEF";
+		for (int i = 0; i < 16; i++, x >>= 4)
+			res.push_back(HEXDES[x & 0xF]);
+		reverse(res.begin(), res.end());
+		return move(res);
 	}
 
-	ull decryptDES(ull text) {
-		return dataEncryptionAlgorithm(text, decKeys).finalRes;
+	ull fromHexDES(string h) {
+		string HEXDES = "0123456789ABCDEF";
+		ull res = 0, first = find(HEXDES.begin(), HEXDES.end(), h[0]) - HEXDES.begin();
+		for (int i = 1; i < 16; i++, res <<= 4)
+			res += find(HEXDES.begin(), HEXDES.end(), h[i]) - HEXDES.begin();
+		return (res >> 4) | ((1ull << 60) * first);
+	}
+
+	DESRes encryptDES(ull text) {
+		return dataEncryptionAlgorithm(text, encKeys);
+	}
+
+	DESRes decryptDES(ull text) {
+		return dataEncryptionAlgorithm(text, decKeys);
 	}
 
 };
