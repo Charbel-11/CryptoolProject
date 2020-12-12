@@ -191,27 +191,27 @@ namespace CryptoolProject {
 			this->label5->AutoSize = true;
 			this->label5->Location = System::Drawing::Point(17, 79);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(283, 13);
+			this->label5->Size = System::Drawing::Size(272, 13);
 			this->label5->TabIndex = 22;
-			this->label5->Text = L"For 128-AES: inputs should containg 32 hexadecimal digits";
+			this->label5->Text = L"For 128-AES: key should containg 32 hexadecimal digits";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
 			this->label6->Location = System::Drawing::Point(17, 104);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(283, 13);
+			this->label6->Size = System::Drawing::Size(272, 13);
 			this->label6->TabIndex = 23;
-			this->label6->Text = L"For 192-AES: inputs should containg 48 hexadecimal digits";
+			this->label6->Text = L"For 192-AES: key should containg 48 hexadecimal digits";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
 			this->label7->Location = System::Drawing::Point(17, 127);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(283, 13);
+			this->label7->Size = System::Drawing::Size(272, 13);
 			this->label7->TabIndex = 24;
-			this->label7->Text = L"For 256-AES: inputs should containg 64 hexadecimal digits";
+			this->label7->Text = L"For 256-AES: key should containg 64 hexadecimal digits";
 			// 
 			// AdvancedEncryptionStandard
 			// 
@@ -256,9 +256,9 @@ namespace CryptoolProject {
 		AESerror->Text = marshal_as<String^, string>("");
 		string plaintext = marshal_as<string, String^>(AESPlaintext->Text);
 		string key = marshal_as<string, String^>(AESKey->Text);
-		if (plaintext.empty() || key.empty()) { AESerror->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return; }
-		if (key.size() != plaintext.size()) { AESerror->Text = marshal_as<String^, string>("ERROR: Key size different from plaintext size!"); return; }			
-		if (plaintext.size() != 32 && plaintext.size() != 64 && plaintext.size() != 48) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Plaintext and Key Size!"); return; }
+		if (plaintext.empty() || key.empty()) { AESerror->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return; }	
+		if (plaintext.size() != 32) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Plaintext Size!"); return; }
+		if (key.size() != 32 && key.size() != 48 && key.size() != 64) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Key Size!"); return; }
 		if (ValidHexInput(plaintext) && ValidHexInput(key))
 		{
 			AES in(key);
@@ -273,8 +273,8 @@ namespace CryptoolProject {
 		string ciphertext = marshal_as<string, String^>(AESCiphertext->Text);
 		string key = marshal_as<string, String^>(AESKey->Text);
 		if (ciphertext.empty() || key.empty()) { AESerror->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return; }
-		if (key.size() != ciphertext.size()) { AESerror->Text = marshal_as<String^, string>("ERROR: Key size different from ciphertext size!"); return; }
-		if (ciphertext.size() != 32 && ciphertext.size() != 48 && ciphertext.size() != 64) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid ciphertext and key ize!"); return; }
+		if (ciphertext.size() != 32) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Ciphertext Size!"); return; }
+		if (key.size() != 32 && key.size() != 48 && key.size() != 64) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Key Size!"); return; }
 		if (ValidHexInput(ciphertext) && ValidHexInput(key))
 		{
 			AES in(key);
