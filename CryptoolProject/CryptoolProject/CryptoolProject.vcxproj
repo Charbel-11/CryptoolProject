@@ -115,12 +115,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AdvancedEncryptionStandard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="AES.h" />
     <ClInclude Include="AffineCipher.h" />
     <ClInclude Include="AffineCipherGUI.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ClassicalEncryptionTechniques.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="DataEncryptionStandard.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="DES.h" />
@@ -164,14 +170,23 @@
     <ClCompile Include="MainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdvancedEncryptionStandard.resx">
+      <DependentUpon>AdvancedEncryptionStandard.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AffineCipherGUI.resx">
       <DependentUpon>AffineCipherGUI.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClassicalEncryptionTechniques.resx">
       <DependentUpon>ClassicalEncryptionTechniques.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DataEncryptionStandard.resx">
+      <DependentUpon>DataEncryptionStandard.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExtendedGCDGUI.resx">
       <DependentUpon>ExtendedGCDGUI.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HillCipherGUI.resx">
+      <DependentUpon>HillCipherGUI.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>

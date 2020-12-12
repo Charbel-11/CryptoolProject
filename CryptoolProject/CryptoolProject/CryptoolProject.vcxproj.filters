@@ -123,6 +123,12 @@
     <ClInclude Include="PolyArithmetic.h">
       <Filter>GUI\Polynomial Arithmetic</Filter>
     </ClInclude>
+    <ClInclude Include="DataEncryptionStandard.h">
+      <Filter>GUI\Data Encryption Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="AdvancedEncryptionStandard.h">
+      <Filter>GUI\Advanced Encryption Standard</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainForm.cpp">
