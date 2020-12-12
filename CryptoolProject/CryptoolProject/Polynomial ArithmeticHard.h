@@ -10,9 +10,48 @@ const int SZ = 1200;
 struct polyArithmeticLong {
 	bitset<SZ> mod;
 
+	int getHexFromDigit(char c) {
+		if ('0' <= c && c <= '9') { return c - '0'; }
+		if ('a' <= c && c <= 'z') { return 10 + c - 'a'; }
+		if ('A' <= c && c <= 'Z') { return 10 + c - 'A'; }
+	}
+	char getDigitFromHex(int num) {
+		if (num < 10) { return '0' + num; }
+		else { return num - 10 + 'A'; }
+	}
+
+	bitset<SZ> hexToBitset(string num) {
+		int i = 0; bitset<SZ> res;
+		reverse(num.begin(), num.end());
+		for (auto& c : num) {
+			int curDigit = getHexFromDigit(c);
+			for (int j = 0; j < 4; j++) {
+				if (curDigit & 1) { res[i] = 1; }
+				else { res[i] = 0; }
+				i++; curDigit /= 2;
+			}
+		}
+		return res;
+	}
+
+	// Prints in hexadecimal(len bits) with each sp bits separated by a space
+	string toHex(bitset<SZ>& K, int len, int sp) {
+		string res = "";
+		for (int i = 0; i < len; i += 4) {
+			if (i && i % sp == 0) res.push_back(' ');
+			int curNum = 0, startIdx = min(i + 3, len - 1);
+			for (int j = startIdx; j >= i; j--) {
+				curNum *= 2; curNum += K[j];
+			}
+			res.push_back(getDigitFromHex(curNum));
+		}
+		reverse(res.begin(), res.end());
+		return res;
+	}
+
 	// Prints in binary(len bits) with each sp bits separated by a space
 	string printAsBinary(bitset<SZ>& K, int len, int sp) {
-		string res;
+		string res = "";
 		for (int i = 0; i < len; i++) {
 			if (i && i % sp == 0) res.push_back(' ');
 			res += (K[i]?'1':'0');
