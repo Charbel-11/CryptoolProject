@@ -446,6 +446,18 @@ private: System::Windows::Forms::Label^ RoundKey;
 
 		}
 #pragma endregion
+	private: bool ValidHexInput(string text)
+	{
+		string Hex = "0123456789ABCDEF";
+		for (int i = 0; i < text.size(); i++)
+		{
+			if (Hex.find(text[i]) == std::string::npos)
+			{
+				DESerror->Text = marshal_as<String^, string>("ERROR: Invalid Hex Input!"); return false;
+			}
+		}
+		return true;
+	}
 
 	private: System::Void DESBackButt_Click(System::Object^ sender, System::EventArgs^ e) {
 
@@ -454,209 +466,220 @@ private: System::Windows::Forms::Label^ RoundKey;
 	
 	private: System::Void DESEncryptButt_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		DESerror->Text = marshal_as<String^, string>("");
 		string plaintext = marshal_as<string, String^>(DESPlaintext->Text);
 		string key = marshal_as<string, String^>(DESKey->Text);
 		if (plaintext.empty() || key.empty()) { DESerror->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return; }
 		if (key.size()!=16) { DESerror->Text = marshal_as<String^, string>("ERROR: Key not 64 bits!"); return; }
 		if (plaintext.size()!=16) { DESerror->Text = marshal_as<String^, string>("ERROR: plaintext not 64bits!"); return; }
-		DES in(key);
-		DESRes result = in.encryptDES(in.fromHexDES(plaintext));
-		string res = in.toHexDES(result.finalRes);
-		DESCiphertext->Text = marshal_as<String^, string>(res);
-
-		int n1 = result.keys.size();
-		int n2 = result.L.size();
-		int n3 = result.R.size();
-		int n4 = result.expansion.size();
-		int n5 = result.keyMixing.size();
-		int n6 = result.substitution.size();
-		int n7 = result.permutation.size();
-
-		string k = "Round Keys: ";
-		for (int i = 0; i < n1; i++)
+		
+		if (ValidHexInput(plaintext)&& ValidHexInput(key))
 		{
-			k += in.toHexDES(result.keys[i]);
-			k += " ";
-			if (i %4== 0)
-			{
-				k += "\n";
-			}
-		}
-		RoundKey->Text = marshal_as<String^, string>(k);
+			DES in(key);
+			DESRes result = in.encryptDES(in.fromHexDES(plaintext));
+			string res = in.toHexDES(result.finalRes);
+			DESCiphertext->Text = marshal_as<String^, string>(res);
 
-		string l = "Left: ";
-		for (int i = 0; i < n2; i++)
-		{
-			l += in.toHexDES(result.L[i]);
-			l += " ";
-			if (i % 4 == 0)
-			{
-				l += "\n";
-			}
-		}
-		DESLeft->Text = marshal_as<String^, string>(l);
+			int n1 = result.keys.size();
+			int n2 = result.L.size();
+			int n3 = result.R.size();
+			int n4 = result.expansion.size();
+			int n5 = result.keyMixing.size();
+			int n6 = result.substitution.size();
+			int n7 = result.permutation.size();
 
-		string r = "Right: ";
-		for (int i = 0; i < n3; i++)
-		{
-			r += in.toHexDES(result.R[i]);
-			r += " ";
-			if (i % 4 == 0)
+			string k = "Round Keys: ";
+			for (int i = 0; i < n1; i++)
 			{
-				r += "\n";
+				k += in.toHexDES(result.keys[i]);
+				k += " ";
+				if (i % 4 == 0)
+				{
+					k += "\n";
+				}
 			}
-		}
-		DESRight->Text += marshal_as<String^, string>(r);
+			RoundKey->Text = marshal_as<String^, string>(k);
 
-		string exp = "Expansion: ";
-		for (int i = 0; i < n4; i++)
-		{
-			exp += in.toHexDES(result.expansion[i]);
-			exp += " ";
-			if (i % 4 == 0)
+			string l = "Left: ";
+			for (int i = 0; i < n2; i++)
 			{
-				exp += "\n";
+				l += in.toHexDES(result.L[i]);
+				l += " ";
+				if (i % 4 == 0)
+				{
+					l += "\n";
+				}
 			}
-		}
-		DESExpansion->Text = marshal_as<String^, string>(exp);
+			DESLeft->Text = marshal_as<String^, string>(l);
 
-		string km = "Key Mixing: ";
-		for (int i = 0; i < n5; i++)
-		{
-			km += in.toHexDES(result.keyMixing[i]);
-			km += " ";
-			if (i % 4 == 0)
+			string r = "Right: ";
+			for (int i = 0; i < n3; i++)
 			{
-				km += "\n";
+				r += in.toHexDES(result.R[i]);
+				r += " ";
+				if (i % 4 == 0)
+				{
+					r += "\n";
+				}
 			}
-		}
-		DESKeyMixing->Text = marshal_as<String^, string>(km);
+			DESRight->Text = marshal_as<String^, string>(r);
 
-		string s = "Substitution: ";
-		for (int i = 0; i < n6; i++)
-		{
-			s += in.toHexDES(result.substitution[i]);
-			s += " ";
-			if (i % 4 == 0)
+			string exp = "Expansion: ";
+			for (int i = 0; i < n4; i++)
 			{
-				s += "\n";
+				exp += in.toHexDES(result.expansion[i]);
+				exp += " ";
+				if (i % 4 == 0)
+				{
+					exp += "\n";
+				}
 			}
-		}
-		DESSubstitution->Text = marshal_as<String^, string>(s);
+			DESExpansion->Text = marshal_as<String^, string>(exp);
 
-		string p = "Permutation: ";
-		for (int i = 0; i < n7; i++)
-		{
-			p += in.toHexDES(result.permutation[i]);
-			p += " ";
-			if (i % 4 == 0)
+			string km = "Key Mixing: ";
+			for (int i = 0; i < n5; i++)
 			{
-				p += "\n";
+				km += in.toHexDES(result.keyMixing[i]);
+				km += " ";
+				if (i % 4 == 0)
+				{
+					km += "\n";
+				}
 			}
+			DESKeyMixing->Text = marshal_as<String^, string>(km);
+
+			string s = "Substitution: ";
+			for (int i = 0; i < n6; i++)
+			{
+				s += in.toHexDES(result.substitution[i]);
+				s += " ";
+				if (i % 4 == 0)
+				{
+					s += "\n";
+				}
+			}
+			DESSubstitution->Text = marshal_as<String^, string>(s);
+
+			string p = "Permutation: ";
+			for (int i = 0; i < n7; i++)
+			{
+				p += in.toHexDES(result.permutation[i]);
+				p += " ";
+				if (i % 4 == 0)
+				{
+					p += "\n";
+				}
+			}
+			DESPermutation->Text = marshal_as<String^, string>(p);
 		}
-		DESPermutation->Text = marshal_as<String^, string>(p);
 	}
 
 	private: System::Void DESDecryptButt_Click(System::Object^ sender, System::EventArgs^ e) {
-
+		DESerror->Text = marshal_as<String^, string>("");
 		string ciphertext = marshal_as<string, String^>(DESCiphertext->Text);
 		string key = marshal_as<string, String^>(DESKey->Text);
 		if (ciphertext.empty() || key.empty()) { DESerror->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return; }
-		DES in(key);
-		DESRes result = in.decryptDES(in.fromHexDES(ciphertext));
-		string res = in.toHexDES(result.finalRes);
-		DESPlaintext->Text = marshal_as<String^, string>(res);
-		int n1 = result.keys.size();
-		int n2 = result.L.size();
-		int n3 = result.R.size();
-		int n4 = result.expansion.size();
-		int n5 = result.keyMixing.size();
-		int n6 = result.substitution.size();
-		int n7 = result.permutation.size();
+		if (key.size() != 16) { DESerror->Text = marshal_as<String^, string>("ERROR: Key not 64 bits!"); return; }
+		if (ciphertext.size() != 16) { DESerror->Text = marshal_as<String^, string>("ERROR: ciphertext not 64bits!"); return; }
 		
-		string k = "Round Keys: ";
-		for (int i = 0; i < n1; i++)
+		if (ValidHexInput(ciphertext)&& ValidHexInput(key))
 		{
-			k += in.toHexDES(result.keys[i]);
-			k += " ";
-			if (i % 4 == 0)
-			{
-				k += "\n";
-			}
-		}
-		RoundKey->Text = marshal_as<String^, string>(k);
+			DES in(key);
+			DESRes result = in.decryptDES(in.fromHexDES(ciphertext));
+			string res = in.toHexDES(result.finalRes);
+			DESPlaintext->Text = marshal_as<String^, string>(res);
+			int n1 = result.keys.size();
+			int n2 = result.L.size();
+			int n3 = result.R.size();
+			int n4 = result.expansion.size();
+			int n5 = result.keyMixing.size();
+			int n6 = result.substitution.size();
+			int n7 = result.permutation.size();
 
-		string l = "Left: ";
-		for (int i = 0; i < n2; i++)
-		{
-			l += in.toHexDES(result.L[i]);
-			l += " ";
-			if (i % 4 == 0)
+			string k = "Round Keys: ";
+			for (int i = 0; i < n1; i++)
 			{
-				l += "\n";
+				k += in.toHexDES(result.keys[i]);
+				k += " ";
+				if (i % 4 == 0)
+				{
+					k += "\n";
+				}
 			}
-		}
-		DESLeft->Text = marshal_as<String^, string>(l);
+			RoundKey->Text = marshal_as<String^, string>(k);
 
-		string r = "Right: ";
-		for (int i = 0; i < n3; i++)
-		{
-			r += in.toHexDES(result.R[i]);
-			r += " ";
-			if (i % 4 == 0)
+			string l = "Left: ";
+			for (int i = 0; i < n2; i++)
 			{
-				r += "\n";
+				l += in.toHexDES(result.L[i]);
+				l += " ";
+				if (i % 4 == 0)
+				{
+					l += "\n";
+				}
 			}
-		}
-		DESRight->Text += marshal_as<String^, string>(r);
+			DESLeft->Text = marshal_as<String^, string>(l);
 
-		string exp = "Expansion: ";
-		for (int i = 0; i < n4; i++)
-		{
-			exp += in.toHexDES(result.expansion[i]);
-			exp += " ";
-			if (i % 4 == 0)
+			string r = "Right: ";
+			for (int i = 0; i < n3; i++)
 			{
-				exp += "\n";
+				r += in.toHexDES(result.R[i]);
+				r += " ";
+				if (i % 4 == 0)
+				{
+					r += "\n";
+				}
 			}
-		}
-		DESExpansion->Text = marshal_as<String^, string>(exp);
+			DESRight->Text += marshal_as<String^, string>(r);
 
-		string km = "Key Mixing: ";
-		for (int i = 0; i < n5; i++)
-		{
-			km += in.toHexDES(result.keyMixing[i]);
-			km += " ";
-			if (i % 4 == 0)
+			string exp = "Expansion: ";
+			for (int i = 0; i < n4; i++)
 			{
-				km += "\n";
+				exp += in.toHexDES(result.expansion[i]);
+				exp += " ";
+				if (i % 4 == 0)
+				{
+					exp += "\n";
+				}
 			}
-		}
-		DESKeyMixing->Text = marshal_as<String^, string>(km);
+			DESExpansion->Text = marshal_as<String^, string>(exp);
 
-		string s = "Substitution: ";
-		for (int i = 0; i < n6; i++)
-		{
-			s += in.toHexDES(result.substitution[i]);
-			s += " ";
-			if (i % 4 == 0)
+			string km = "Key Mixing: ";
+			for (int i = 0; i < n5; i++)
 			{
-				s += "\n";
+				km += in.toHexDES(result.keyMixing[i]);
+				km += " ";
+				if (i % 4 == 0)
+				{
+					km += "\n";
+				}
 			}
-		}
-		DESSubstitution->Text = marshal_as<String^, string>(s);
+			DESKeyMixing->Text = marshal_as<String^, string>(km);
 
-		string p = "Permutation: ";
-		for (int i = 0; i < n7; i++)
-		{
-			p += in.toHexDES(result.permutation[i]);
-			p += " ";
-			if (i % 4 == 0)
+			string s = "Substitution: ";
+			for (int i = 0; i < n6; i++)
 			{
-				p += "\n";
+				s += in.toHexDES(result.substitution[i]);
+				s += " ";
+				if (i % 4 == 0)
+				{
+					s += "\n";
+				}
 			}
+			DESSubstitution->Text = marshal_as<String^, string>(s);
+
+			string p = "Permutation: ";
+			for (int i = 0; i < n7; i++)
+			{
+				p += in.toHexDES(result.permutation[i]);
+				p += " ";
+				if (i % 4 == 0)
+				{
+					p += "\n";
+				}
+			}
+			DESPermutation->Text = marshal_as<String^, string>(p);
 		}
-		DESPermutation->Text = marshal_as<String^, string>(p);
 	}
 };
 }

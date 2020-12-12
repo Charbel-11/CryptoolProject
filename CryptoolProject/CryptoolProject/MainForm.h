@@ -167,6 +167,7 @@ namespace CryptoolProject {
 
 	private: System::Void AESButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		AdvancedEncryptionStandard^ AESForm = gcnew AdvancedEncryptionStandard(this);
+		AESForm->Show(); this->Hide();
 	}
 };
 }
