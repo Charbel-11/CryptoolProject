@@ -194,6 +194,9 @@
     <EmbeddedResource Include="AffineCipherGUI.resx">
       <DependentUpon>AffineCipherGUI.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChineseRemainder.resx">
+      <DependentUpon>ChineseRemainder.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ClassicalEncryptionTechniques.resx">
       <DependentUpon>ClassicalEncryptionTechniques.h</DependentUpon>
     </EmbeddedResource>
@@ -212,6 +215,9 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MillerRabin.resx">
+      <DependentUpon>MillerRabin.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MonoAlphabeticCipherGUI.resx">
       <DependentUpon>MonoAlphabeticCipherGUI.h</DependentUpon>
     </EmbeddedResource>
@@ -226,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PrimeFactorization.resx">
       <DependentUpon>PrimeFactorization.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Totient.resx">
+      <DependentUpon>Totient.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VigenereCipherGUI.resx">
       <DependentUpon>VigenereCipherGUI.h</DependentUpon>

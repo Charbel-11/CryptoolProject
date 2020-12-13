@@ -147,6 +147,7 @@ namespace CryptoolProject {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::Label^ label12;
+	private: System::Windows::Forms::Button^ button3;
 	private: System::ComponentModel::IContainer^ components;
 	protected:
 
@@ -183,6 +184,7 @@ namespace CryptoolProject {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// textBox1
@@ -349,11 +351,22 @@ namespace CryptoolProject {
 			this->label12->Size = System::Drawing::Size(0, 20);
 			this->label12->TabIndex = 18;
 			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(337, 314);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(84, 35);
+			this->button3->TabIndex = 19;
+			this->button3->Text = L"back";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &HillCipherGUI::button3_Click);
+			// 
 			// HillCipherGUI
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(454, 384);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->button2);
@@ -434,7 +447,7 @@ private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e
 		   for (int row = 0; row < n; row++) {
 			   for (int col = 0; col < n; col++) {
 				   if (row != p && col != q) {
-					   v[i][j++] = A[row][col];
+					   v[i][j++] = (A[row][col]) % 26;
 					   if (j == n - 1) {
 						   j = 0;
 						   i++;
@@ -453,10 +466,10 @@ private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e
 		   int sign = 1;
 		   for (int f = 0; f < n; f++) {
 			   vector<vector<ll>> temp = getCofactor(A, 0, f, n);
-			   D += sign * A[0][f] * determinant(temp, n - 1);
-			   sign = -sign;
+			   D += (sign * A[0][f] * determinant(temp, n - 1)) % 26;
+			   sign = (-sign + 26) % 26;
 		   }
-		   return D;
+		   return D % 26;
 	   }
 
 	   // Function to get adjoint of A[N][N] in adj[N][N].
@@ -502,18 +515,16 @@ private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e
 
 		   for (int i = 0; i < nn; i++) {
 			   for (int j = 0; j < nn; j++) {
-				   inv[i][j] = (moddiv(adj[i][j], det) + 26) % 26;
+				   inv[i][j] = (moddiv(adj[i][j] % 26, det % 26) + 26) % 26;
 			   }
 		   }
 		   return inv;
 	   }
 
 	   string encrypt(string s, string k) {
-		   if (k.size() != s.size() * s.size()) {
-			   cout << "the key is not suitable for the given string" << endl;
-		   }
+		   cout << s << " " << k << endl;
 		   matrix<ll> mkey(s.size(), s.size(), 0);
-		   for (int i = 0; i < k.size(); i++) {
+		   for (int i = 0; i < s.size() * s.size(); i++) {
 			   mkey[i / s.size()][i % s.size()] = (k[i] - 'a');
 		   }
 		   matrix<ll> mtext(s.size(), 1, 0);
@@ -533,7 +544,7 @@ private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e
 	   }
 	   string decrypt(string s, string k) {
 		   matrix<ll> mkey(s.size(), s.size(), 0);
-		   for (int i = 0; i < k.size(); i++) {
+		   for (int i = 0; i < s.size() * s.size(); i++) {
 			   mkey[i / s.size()][i % s.size()] = (k[i] - 'a');
 		   }
 		   matrix<ll> mcipher(s.size(), 1, 0);
@@ -545,7 +556,21 @@ private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e
 			   return "NO";
 		   }
 		   auto v = inverse(mkey.v);
+		   //cout<<"asdfsafasf"<<determinant(mkey.v)<<endl;
+		   loop(i, mkey.v.size()) {
+			   loop(j, mkey.v[i].size()) {
+				   cout << mkey.v[i][j] << " ";
+			   }
+		   }
+		   cout << endl << endl;
+
+		   loop(i, v.size()) {
+			   loop(j, v[i].size()) {
+				   cout << v[i][j] << " ";
+			   }
+		   }
 		   mkey.v = v;
+
 		   matrix<ll> ans = mkey.modmult(mcipher);
 		   string  ret;
 		   for (int i = 0; i < s.size(); i++) {
@@ -553,23 +578,127 @@ private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e
 		   }
 		   return ret;
 	   }
+
+	   string bigenc(string s, string  key) {
+		   int ok = 0;
+		   loop(j, 9) {
+			   if ((j + 1) * (j + 1) == key.size()) {
+				   ok = j + 1;
+			   }
+		   }
+		   if (!ok) {
+			   return "inappropriate key";
+		   }
+		   matrix<ll> mkey(ok, ok, 0);
+		   for (int i = 0; i < key.size(); i++) {
+			   mkey[i / ok][i % ok] = (key[i] - 'a');
+		   }
+		   cout << ok << endl;
+		   if (determinant(mkey.v, mkey.v.size()) % 2 == 0 || determinant(mkey.v, mkey.v.size()) % 13 == 0) {
+			   cout << "please, give an appropriate key" << endl;
+			   return "NO. Invalid matrix";
+		   }
+		   cout << ok << endl;
+		   string cipher = "";
+		   vector<int> blockind;
+		   string block;
+		   string resp = s;
+		   loop(i, s.size()) {
+			   if (block.size() == ok) {
+				   cout << "block" << block << endl;
+				   string ciph = encrypt(block, key);
+				   if (ciph == "NO") {
+					   return "Invalid Matrix";
+				   }
+				   loop(j, blockind.size()) {
+					   resp[blockind[j]] = ciph[j];
+				   }
+				   block = "";
+				   blockind.clear();
+			   }
+			   if (s[i] >= 'a' && s[i] <= 'z') {
+				   block.push_back(s[i]);
+				   blockind.push_back(i);
+			   }
+		   }
+		   string ciph = encrypt(block, key);
+		   if (ciph == "NO") {
+			   return "Invalid Matrix";
+		   }
+		   loop(j, blockind.size()) {
+			   resp[blockind[j]] = ciph[j];
+		   }
+		   return resp;
+
+	   }
+	   string bigdec(string s, string key) {
+		   int ok = 0;
+		   loop(j, 9) {
+			   if ((j + 1) * (j + 1) == key.size()) {
+				   ok = j + 1;
+			   }
+		   }
+		   if (!ok) {
+			   return "inappropriate key";
+		   }
+		   matrix<ll> mkey(ok, ok, 0);
+		   for (int i = 0; i < key.size(); i++) {
+			   mkey[i / ok][i % ok] = (key[i] - 'a');
+		   }
+		   if (determinant(mkey.v, mkey.v.size()) % 2 == 0 || determinant(mkey.v, mkey.v.size()) % 13 == 0) {
+			   cout << "please, give an appropriate key" << endl;
+			   return "NO. Invalid matrix";
+		   }
+		   string cipher = "";
+		   vector<int> blockind;
+		   string block;
+		   string resp = s;
+		   loop(i, s.size()) {
+			   if (block.size() == ok) {
+				   string ciph = decrypt(block, key);
+				   if (ciph == "NO") {
+					   return "Invalid Matrix";
+				   }
+				   loop(j, blockind.size()) {
+					   resp[blockind[j]] = ciph[j];
+				   }
+				   block = "";
+				   blockind.clear();
+			   }
+			   if (s[i] >= 'a' && s[i] <= 'z') {
+				   block.push_back(s[i]);
+				   blockind.push_back(i);
+			   }
+		   }
+		   string ciph = decrypt(block, key);
+		   if (ciph == "NO") {
+			   return "Invalid Matrix";
+		   }
+		   loop(j, blockind.size()) {
+			   resp[blockind[j]] = ciph[j];
+		   }
+		   return resp;
+	   }
 	   
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	string key = marshal_as<string, String^>(textBox3->Text);
 
 	string cipher = marshal_as<string, String^>(textBox2->Text);
-	string message = decrypt(cipher, key);
+	string message = bigdec(cipher, key);
 	label11->Text = marshal_as<String^, string>(message);
 }
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		string key = marshal_as<string, String^>(textBox4->Text);
 
 		string message = marshal_as<string, String^>(textBox1->Text);
-		string cipher = encrypt(message, key);
+		string cipher = bigenc(message, key);
 		label12->Text = marshal_as<String^, string>( cipher);
 	}
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	parent->Show(); this->Close();
 }
 };
 }
