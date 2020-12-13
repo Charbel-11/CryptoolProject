@@ -1,9 +1,7 @@
 #pragma once
-#include<string>
-#include<vector>
-//#include <msclr/marshal_cppstd.h>
-//typedef long long ll;
-//using namespace std;
+#include "NumberTheory.h"
+#include <msclr/marshal_cppstd.h>
+
 namespace CryptoolProject {
 
 	using namespace System;
@@ -18,13 +16,12 @@ namespace CryptoolProject {
 	/// </summary>
 	public ref class PrimeFactorization : public System::Windows::Forms::Form
 	{
+		Form^ parent;
 	public:
-		PrimeFactorization(void)
+		PrimeFactorization(Form^ _parent)
 		{
+			parent = _parent;
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
 		}
 
 	protected:
@@ -38,9 +35,18 @@ namespace CryptoolProject {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Button^ backButton;
+	protected:
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::Label^ output;
+
+
+
+
 	protected:
 
 	private:
@@ -56,45 +62,97 @@ namespace CryptoolProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->backButton = (gcnew System::Windows::Forms::Button());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->output = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
+			// 
+			// backButton
+			// 
+			this->backButton->Location = System::Drawing::Point(349, 284);
+			this->backButton->Name = L"backButton";
+			this->backButton->Size = System::Drawing::Size(157, 48);
+			this->backButton->TabIndex = 23;
+			this->backButton->Text = L"Back";
+			this->backButton->UseVisualStyleBackColor = true;
+			this->backButton->Click += gcnew System::EventHandler(this, &PrimeFactorization::backButton_Click);
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->Location = System::Drawing::Point(91, 120);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(81, 25);
+			this->label4->TabIndex = 20;
+			this->label4->Text = L"Number";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(176, 34);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(270, 36);
+			this->label2->TabIndex = 17;
+			this->label2->Text = L"Prime Factorization";
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label11->Location = System::Drawing::Point(48, 189);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(184, 25);
+			this->label11->TabIndex = 16;
+			this->label11->Text = L"Prime Factorization:";
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(12, 97);
+			this->button1->Location = System::Drawing::Point(75, 284);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"button1";
+			this->button1->Size = System::Drawing::Size(157, 48);
+			this->button1->TabIndex = 15;
+			this->button1->Text = L"Factorize";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &PrimeFactorization::button1_Click);
+			this->button1->Click += gcnew System::EventHandler(this, &PrimeFactorization::button1_Click_1);
 			// 
-			// textBox1
+			// textBox2
 			// 
-			this->textBox1->Location = System::Drawing::Point(116, 97);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 26);
-			this->textBox1->TabIndex = 1;
+			this->textBox2->Location = System::Drawing::Point(270, 119);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(153, 26);
+			this->textBox2->TabIndex = 13;
 			// 
-			// label1
+			// output
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(88, 138);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(51, 20);
-			this->label1->TabIndex = 2;
-			this->label1->Text = L"label1";
+			this->output->AutoSize = true;
+			this->output->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->output->Location = System::Drawing::Point(265, 189);
+			this->output->Name = L"output";
+			this->output->Size = System::Drawing::Size(0, 25);
+			this->output->TabIndex = 24;
 			// 
 			// PrimeFactorization
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(278, 244);
-			this->Controls->Add(this->label1);
-			this->Controls->Add(this->textBox1);
+			this->ClientSize = System::Drawing::Size(595, 372);
+			this->Controls->Add(this->output);
+			this->Controls->Add(this->backButton);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label11);
 			this->Controls->Add(this->button1);
+			this->Controls->Add(this->textBox2);
 			this->Name = L"PrimeFactorization";
 			this->Text = L"PrimeFactorization";
 			this->ResumeLayout(false);
@@ -102,19 +160,34 @@ namespace CryptoolProject {
 
 		}
 #pragma endregion
-		/*vector<pair<ll, int>> primeFact(ll x) {
-			vector<pair<ll, int>> res;
-			for (ll i = 2; i * i <= x; i++) {
-				if (x % i) { continue; }
-				ll p = i; int e = 0;
-				while (x % p == 0) { x /= p; e++; }
-				res.push_back({ p, e });
+	private:
+		System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		string nStr = marshal_as<string, String^>(textBox2->Text);
+		if (nStr.empty()) {
+			output->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return;
+		}
+		if (!System::Text::RegularExpressions::Regex::IsMatch(textBox2->Text, "[-]?[0-9]+")) {
+			output->Text = marshal_as<String^, string>("ERROR: Invalid Input!"); return;
+		}
+		
+		ll n = stoll(nStr);
+		bool neg = false;
+		if (n < 0) { n = -n; neg = true; }
+		NumberTheory NT;
+		vector<pair<ll, int>> primeF = NT.primeFact(n);
+		string ans = (neg ? "-" : "");
+		for (auto& p : primeF) {
+			ans += to_string(p.first);
+			if (p.second > 1) {
+				ans += "^" + to_string(p.second);
 			}
-			if (x != 1) { res.push_back({ x, 1 }); }
-			return move(res);
-		}*/
+			ans += " x ";
+		}
+		ans.pop_back();
+		ans.pop_back();
+		ans.pop_back();
 
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		output->Text = marshal_as < String^, string >(ans);
 		/*string s = marshal_as <string, String^>(textBox1->Text);
 		int x = stoi(marshal_as<string, String^>(textBox1->Text));
 		auto v = primeFact(x);
@@ -127,5 +200,8 @@ namespace CryptoolProject {
 		}
 		textBox1->Text = marshal_as < String^, string >(ans);*/
 	}
-	};
+	private: System::Void backButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		parent->Show(); this->Close();
+	}
+};
 }

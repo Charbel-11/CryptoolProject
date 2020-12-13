@@ -154,7 +154,7 @@ namespace CryptoolProject {
 		}
 #pragma endregion
 	private: System::Void FEButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		fastexp^ nF = gcnew fastexp();
+		fastexp^ nF = gcnew fastexp(this);
 		nF->Show(); this->Hide();
 	}
 	private: System::Void CRTButton_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -166,7 +166,7 @@ namespace CryptoolProject {
 		nF->Show(); this->Hide();
 	}
 	private: System::Void PFButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		PrimeFactorization^ nF = gcnew PrimeFactorization();
+		PrimeFactorization^ nF = gcnew PrimeFactorization(this);
 		nF->Show(); this->Hide();
 	}
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
