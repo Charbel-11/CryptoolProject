@@ -250,9 +250,9 @@ namespace CryptoolProject {
 			// AESRound
 			// 
 			this->AESRound->FormattingEnabled = true;
-			this->AESRound->Items->AddRange(gcnew cli::array< System::Object^  >(11) {
+			this->AESRound->Items->AddRange(gcnew cli::array< System::Object^  >(15) {
 				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
-					L"9", L"10", L"11"
+					L"9", L"10", L"11", L"12", L"13", L"14", L"15"
 			});
 			this->AESRound->Location = System::Drawing::Point(975, 109);
 			this->AESRound->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
@@ -265,7 +265,7 @@ namespace CryptoolProject {
 			// AESRoundKey
 			// 
 			this->AESRoundKey->AutoSize = true;
-			this->AESRoundKey->Location = System::Drawing::Point(970, 195);
+			this->AESRoundKey->Location = System::Drawing::Point(971, 195);
 			this->AESRoundKey->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->AESRoundKey->Name = L"AESRoundKey";
 			this->AESRoundKey->Size = System::Drawing::Size(0, 20);
@@ -285,7 +285,7 @@ namespace CryptoolProject {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1258, 652);
+			this->ClientSize = System::Drawing::Size(1314, 652);
 			this->Controls->Add(this->AESRounRes);
 			this->Controls->Add(this->AESRoundKey);
 			this->Controls->Add(this->AESRound);
