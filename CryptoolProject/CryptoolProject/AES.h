@@ -415,10 +415,8 @@ public: vector<vector<int>> encryptKeys, decryptKeys; int id = 0;
 						  ss += v[k * 8 + 2 * l + m];
 					  }
 					  s += " ";
-					  ss += " ";
 				  }
 				  s += "\n";
-				  ss += "\n";
 			  }
 			  ret.push_back(s);
 			  if (i == roundNum[id]) {
@@ -462,10 +460,8 @@ public: vector<vector<int>> encryptKeys, decryptKeys; int id = 0;
 						  ss += v[k * 8 + 2 * l + m];
 					  }
 					  s += " ";
-					  ss += " ";
 				  }
 				  s += "\n";
-				  ss += "\n";
 			  }
 			  ret.push_back(s);
 			  if (i == roundNum[id]) {
