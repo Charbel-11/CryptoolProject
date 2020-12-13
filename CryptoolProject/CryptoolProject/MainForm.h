@@ -3,7 +3,7 @@
 #include "PolyArithmetic.h"
 #include "DataEncryptionStandard.h"
 #include "AdvancedEncryptionStandard.h"
-#include "NumberTheory.h"
+#include "NumberTheoryForm.h"
 
 namespace CryptoolProject {
 
@@ -170,9 +170,9 @@ namespace CryptoolProject {
 		AdvancedEncryptionStandard^ AESForm = gcnew AdvancedEncryptionStandard(this);
 		AESForm->Show(); this->Hide();
 	}
-private: System::Void NTButton_Click(System::Object^ sender, System::EventArgs^ e) {
-	NumberTheory^ AESForm = gcnew NumberTheory();
-	AESForm->Show(); this->Hide();
-}
+	private: System::Void NTButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		NumberTheoryForm^ nF = gcnew NumberTheoryForm(this);
+		nF->Show(); this->Hide();
+	}
 };
 }

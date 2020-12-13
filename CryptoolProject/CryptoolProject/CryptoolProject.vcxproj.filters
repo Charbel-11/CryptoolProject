@@ -108,9 +108,6 @@
     <ClInclude Include="DES.h">
       <Filter>Header Files\Data Encryption Standard</Filter>
     </ClInclude>
-    <ClInclude Include="NumberTheory.h">
-      <Filter>Header Files\Number Theory</Filter>
-    </ClInclude>
     <ClInclude Include="MainForm.h">
       <Filter>GUI</Filter>
     </ClInclude>
@@ -159,22 +156,16 @@
     <ClInclude Include="MillerRabin.h">
       <Filter>GUI\Number Theory\MillerRabin</Filter>
     </ClInclude>
+    <ClInclude Include="NumberTheory.h">
+      <Filter>Header Files\Number Theory</Filter>
+    </ClInclude>
+    <ClInclude Include="NumberTheoryForm.h">
+      <Filter>GUI\Number Theory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainForm.cpp">
       <Filter>GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="PrimeFactorization.cpp">
-      <Filter>GUI\Number Theory\PrimeFactorization</Filter>
-    </ClCompile>
-    <ClCompile Include="ChineseRemainder.cpp">
-      <Filter>GUI\Number Theory\ChineseRemainder</Filter>
-    </ClCompile>
-    <ClCompile Include="Totient.cpp">
-      <Filter>GUI\Number Theory\Totient</Filter>
-    </ClCompile>
-    <ClCompile Include="MillerRabin.cpp">
-      <Filter>GUI\Number Theory\MillerRabin</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

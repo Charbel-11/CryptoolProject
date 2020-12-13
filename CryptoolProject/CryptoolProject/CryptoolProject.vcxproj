@@ -153,10 +153,11 @@
     <ClInclude Include="MonoAlphabeticCipherGUI.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="PolyArithmetic.h">
+    <ClInclude Include="NumberTheory.h" />
+    <ClInclude Include="NumberTheoryForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="NumberTheory.h">
+    <ClInclude Include="PolyArithmetic.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PlayfairCipher.h" />
@@ -184,11 +185,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ChineseRemainder.cpp" />
     <ClCompile Include="MainForm.cpp" />
-    <ClCompile Include="MillerRabin.cpp" />
-    <ClCompile Include="PrimeFactorization.cpp" />
-    <ClCompile Include="Totient.cpp" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AdvancedEncryptionStandard.resx">
@@ -218,8 +215,8 @@
     <EmbeddedResource Include="MonoAlphabeticCipherGUI.resx">
       <DependentUpon>MonoAlphabeticCipherGUI.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NumberTheory.resx">
-      <DependentUpon>NumberTheory.h</DependentUpon>
+    <EmbeddedResource Include="NumberTheoryForm.resx">
+      <DependentUpon>NumberTheoryForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayfairCipherGUI.resx">
       <DependentUpon>PlayfairCipherGUI.h</DependentUpon>

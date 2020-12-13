@@ -1,220 +1,118 @@
 #pragma once
-#include "fastexp.h"
-#include "PrimeFactorization.h"
-#include "MillerRabin.h"
-#include "Totient.h"
-#include "ChineseRemainder.h"
-namespace CryptoolProject {
+#include <vector>
+using namespace std;
+typedef long long ll;
 
-	using namespace System;
-	using namespace System::ComponentModel;
-	using namespace System::Collections;
-	using namespace System::Windows::Forms;
-	using namespace System::Data;
-	using namespace System::Drawing;
+class NumberTheory {
+	static ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
+	static ll lcm(ll a, ll b) { return (a / gcd(a, b)) * b; }
 
-	/// <summary>
-	/// Summary for NumberTheory
-	/// </summary>
-	public ref class NumberTheory : public System::Windows::Forms::Form
-	{
-	public:
-		NumberTheory(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+	static vector<pair<ll, int>> primeFact(ll x) {
+		vector<pair<ll, int>> res;
+		for (ll i = 2; i * i <= x; i++) {
+			if (x % i) { continue; }
+			ll p = i; int e = 0;
+			while (x % p == 0) { x /= p; e++; }
+			res.push_back({ p, e });
 		}
-
-	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		~NumberTheory()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Button^ button5;
-	protected:
-
-	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		System::ComponentModel::Container ^components;
-
-#pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		void InitializeComponent(void)
-		{
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->SuspendLayout();
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(260, 281);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"button1";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &NumberTheory::button1_Click);
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(65, 62);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(51, 20);
-			this->label1->TabIndex = 1;
-			this->label1->Text = L"label1";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(267, 132);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(51, 20);
-			this->label2->TabIndex = 2;
-			this->label2->Text = L"label2";
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(492, 76);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(51, 20);
-			this->label3->TabIndex = 3;
-			this->label3->Text = L"label3";
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(509, 181);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(51, 20);
-			this->label4->TabIndex = 4;
-			this->label4->Text = L"label4";
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(65, 202);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(51, 20);
-			this->label5->TabIndex = 5;
-			this->label5->Text = L"label5";
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(200, 202);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 6;
-			this->button2->Text = L"button2";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &NumberTheory::button2_Click);
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(316, 201);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(75, 23);
-			this->button3->TabIndex = 7;
-			this->button3->Text = L"button3";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &NumberTheory::button3_Click);
-			// 
-			// button4
-			// 
-			this->button4->Location = System::Drawing::Point(329, 105);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(75, 23);
-			this->button4->TabIndex = 8;
-			this->button4->Text = L"button4";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &NumberTheory::button4_Click);
-			// 
-			// button5
-			// 
-			this->button5->Location = System::Drawing::Point(143, 129);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(75, 23);
-			this->button5->TabIndex = 9;
-			this->button5->Text = L"button5";
-			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &NumberTheory::button5_Click);
-			// 
-			// NumberTheory
-			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(657, 350);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->label5);
-			this->Controls->Add(this->label4);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
-			this->Controls->Add(this->button1);
-			this->Name = L"NumberTheory";
-			this->Text = L"NumberTheory";
-			this->Load += gcnew System::EventHandler(this, &NumberTheory::NumberTheory_Load);
-			this->ResumeLayout(false);
-			this->PerformLayout();
-
-		}
-#pragma endregion
-	private: System::Void NumberTheory_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		fastexp^ AESForm = gcnew fastexp();
-		AESForm->Show(); this->Hide();
+		if (x != 1) { res.push_back({ x, 1 }); }
+		return move(res);
 	}
 
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	MillerRabin^ AESForm = gcnew MillerRabin();
-	AESForm->Show(); this->Hide();
-}
-private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	PrimeFactorization^ AESForm = gcnew PrimeFactorization();
-	AESForm->Show(); this->Hide();
-}
-private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	ChineseRemainder^ AESForm = gcnew ChineseRemainder();
-	AESForm->Show(); this->Hide();
-}
-private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-	Totient^ AESForm = gcnew Totient();
-	AESForm->Show(); this->Hide();
-}
+	static ll eulerTotient(ll n) {
+		ll res = n;
+		for (ll i = 2; i * i <= n; i++) {
+			if (n % i) { continue; }
+			while (n % i == 0) { n /= i; }
+			res -= res / i;
+		}
+		if (n > 1) { res -= res / n; }
+		return res;
+	}
+
+	static ll power(ll x, ll n) {
+		ll res = 1;
+		for (; n; n >>= 1, x *= x)
+			if (n & 1) res *= x;
+		return res;
+	}
+
+	static ll modularPower(ll x, ll n, const ll mod) {
+		ll res = 1;
+		for (; n; n >>= 1, x = (x * x) % mod)
+			if (n & 1) res = (res * x) % mod;
+		return res;
+	}
+
+
+	bool millerRabin(ll d, int p, ll n) {
+		int r = rand() % (n - 4) + 2;
+		int x = modularPower(r, d, n);
+		if (x == 1 || x == n - 1) { return 1; }
+		for (int i = 0; i < p - 1; i++)
+		{
+			x = modularPower(x, 2, n);
+			if (x == 1) { return 0; }
+			if (x == n - 1) { return 1; }
+		}
+		return 0;
+	}
+
+	//Checks if n is prime using k iterations of Miller-Rabin's algorithm
+	bool isPrime(int n, int k) {
+		if (n == 1 || n == 0 || n == 4) { return 0; }
+		if (n == 2 || n == 3) { return 1; }
+
+		int d = n - 1, p = 0;
+		while (d % 2 == 0) { d /= 2; p++; }
+		for (int i = 0; i < k; i++) {
+			if (!millerRabin(d, p, n)) { return 0; }
+		}
+		return 1;
+	}
+
+
+
+
+	// a*x - b*y = return value = GCD(a,b). x,y >= 0
+	ll egcd(ll a, ll b, ll& x, ll& y) {
+		if (b == 0) {
+			x = 1; y = 0;
+			return a;
+		}
+		ll d = egcd(b, a % b, y, x);
+		y = a - x * (a / b) - y;
+		x = b - x;
+		return d;
+	}
+	// modular inverse; works for any mod p (coprime with a)
+	ll modInverse(ll a, ll p) {
+		ll x, y;
+		egcd(a % p + p, p, x, y);
+		return x % p;
+	}
+	// Given x = a (mod m) and x = b (mod n)
+	// returns res such that x = res (mod lcm(m,n))
+	ll CRT2(ll a, ll m, ll b, ll n) {
+		b = (b + n - (a % n)) % n;
+		ll d = gcd(m, n);
+		ll oldM = m;
+		m /= d; b /= d; n /= d;
+		return ((b * modInverse(m, n)) % n) * oldM + a;
+	}
+	//Given x = a[i] mod m[i] for each i, we find x mod the product of m[i] for all i
+	ll CRT(vector<ll> a, vector<ll> m) {
+		ll A = a[0]; ll curM = m[0];
+		for (int i = 1; i < a.size(); i++) {
+			A = CRT2(A, curM, a[i], m[i]);
+			curM *= m[i];
+		}
+		return A;
+	}
+	//Given A, returns a[i] for each i
+	vector<ll> reverseCRT(ll A, vector<ll> m) {
+		vector<ll> a(m.size());
+		for (int i = 0; i < m.size(); i++) { a[i] = A % m[i]; }
+		return a;
+	}
 };
-}
