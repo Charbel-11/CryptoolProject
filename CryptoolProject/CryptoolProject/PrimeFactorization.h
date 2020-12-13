@@ -1,5 +1,6 @@
 #pragma once
-//#include<string>
+#include<string>
+#include<vector>
 //#include <msclr/marshal_cppstd.h>
 //typedef long long ll;
 //using namespace std;
@@ -101,7 +102,7 @@ namespace CryptoolProject {
 
 		}
 #pragma endregion
-		vector<pair<ll, int>> primeFact(ll x) {
+		/*vector<pair<ll, int>> primeFact(ll x) {
 			vector<pair<ll, int>> res;
 			for (ll i = 2; i * i <= x; i++) {
 				if (x % i) { continue; }
@@ -111,10 +112,10 @@ namespace CryptoolProject {
 			}
 			if (x != 1) { res.push_back({ x, 1 }); }
 			return move(res);
-		}
+		}*/
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		string s = marshal_as <string, String^>(textBox1->Text);
+		/*string s = marshal_as <string, String^>(textBox1->Text);
 		int x = stoi(marshal_as<string, String^>(textBox1->Text));
 		auto v = primeFact(x);
 		string ans = "1";
@@ -124,7 +125,7 @@ namespace CryptoolProject {
 			}
 
 		}
-		textBox1->Text = marshal_as < String^, string >(ans);
+		textBox1->Text = marshal_as < String^, string >(ans);*/
 	}
 	};
 }

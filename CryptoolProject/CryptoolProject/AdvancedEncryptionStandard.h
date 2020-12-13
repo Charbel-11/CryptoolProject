@@ -2,6 +2,7 @@
 #include "AES.h"
 #include <string>
 #include <msclr/marshal_cppstd.h>
+#include <vector>
 
 namespace CryptoolProject {
 
@@ -18,6 +19,7 @@ namespace CryptoolProject {
 	public ref class AdvancedEncryptionStandard : public System::Windows::Forms::Form
 	{
 		Form^ parent;
+
 	public:
 		AdvancedEncryptionStandard(Form^ _parent)
 		{
@@ -31,6 +33,7 @@ namespace CryptoolProject {
 		/// </summary>
 		~AdvancedEncryptionStandard()
 		{
+			//delete result;
 			if (components)
 			{
 				delete components;
@@ -54,12 +57,18 @@ namespace CryptoolProject {
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::HScrollBar^ hScrollBar1;
+	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip1;
+	private: System::Windows::Forms::ComboBox^ AESRound;
+	private: System::Windows::Forms::Label^ AESRoundKey;
+	private: System::Windows::Forms::Label^ AESRounRes;
+	private: System::ComponentModel::IContainer^ components;
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -68,6 +77,7 @@ namespace CryptoolProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->AESEncrypt = (gcnew System::Windows::Forms::Button());
 			this->AESDecrypt = (gcnew System::Windows::Forms::Button());
@@ -82,6 +92,11 @@ namespace CryptoolProject {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->hScrollBar1 = (gcnew System::Windows::Forms::HScrollBar());
+			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
+			this->AESRound = (gcnew System::Windows::Forms::ComboBox());
+			this->AESRoundKey = (gcnew System::Windows::Forms::Label());
+			this->AESRounRes = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -213,11 +228,58 @@ namespace CryptoolProject {
 			this->label7->TabIndex = 24;
 			this->label7->Text = L"For 256-AES: key should containg 64 hexadecimal digits";
 			// 
+			// hScrollBar1
+			// 
+			this->hScrollBar1->Location = System::Drawing::Point(0, 0);
+			this->hScrollBar1->Name = L"hScrollBar1";
+			this->hScrollBar1->Size = System::Drawing::Size(80, 17);
+			this->hScrollBar1->TabIndex = 25;
+			// 
+			// contextMenuStrip1
+			// 
+			this->contextMenuStrip1->Name = L"contextMenuStrip1";
+			this->contextMenuStrip1->Size = System::Drawing::Size(61, 4);
+			// 
+			// AESRound
+			// 
+			this->AESRound->FormattingEnabled = true;
+			this->AESRound->Items->AddRange(gcnew cli::array< System::Object^  >(14) {
+				L"Round 1", L"Round 2", L"Round 3", L"Round 4",
+					L"Round 5", L"Round 6", L"Round 7", L"Round 8", L"Round 9", L"Round 10", L"Round 11", L"Round 12", L"Round 13", L"Round 14"
+			});
+			this->AESRound->Location = System::Drawing::Point(650, 71);
+			this->AESRound->Name = L"AESRound";
+			this->AESRound->Size = System::Drawing::Size(121, 21);
+			this->AESRound->TabIndex = 26;
+			this->AESRound->Text = L"Choose Round";
+			this->AESRound->SelectedIndexChanged += gcnew System::EventHandler(this, &AdvancedEncryptionStandard::AESRound_SelectedIndexChanged);
+			// 
+			// AESRoundKey
+			// 
+			this->AESRoundKey->AutoSize = true;
+			this->AESRoundKey->Location = System::Drawing::Point(647, 127);
+			this->AESRoundKey->Name = L"AESRoundKey";
+			this->AESRoundKey->Size = System::Drawing::Size(0, 13);
+			this->AESRoundKey->TabIndex = 27;
+			// 
+			// AESRounRes
+			// 
+			this->AESRounRes->AutoSize = true;
+			this->AESRounRes->Location = System::Drawing::Point(397, 79);
+			this->AESRounRes->Name = L"AESRounRes";
+			this->AESRounRes->Size = System::Drawing::Size(0, 13);
+			this->AESRounRes->TabIndex = 28;
+			this->AESRounRes->Visible = false;
+			// 
 			// AdvancedEncryptionStandard
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(827, 424);
+			this->ClientSize = System::Drawing::Size(1160, 621);
+			this->Controls->Add(this->AESRounRes);
+			this->Controls->Add(this->AESRoundKey);
+			this->Controls->Add(this->AESRound);
+			this->Controls->Add(this->hScrollBar1);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
@@ -239,7 +301,7 @@ namespace CryptoolProject {
 
 		}
 #pragma endregion
-
+	private:
 	private: bool ValidHexInput(string text)
 	{
 		string Hex = "0123456789ABCDEF";
@@ -262,8 +324,11 @@ namespace CryptoolProject {
 		if (ValidHexInput(plaintext) && ValidHexInput(key))
 		{
 			AES in(key);
-			string res = in.encrpytAES(plaintext);
-			AESCiphertext->Text = marshal_as<String^, string>(res);
+			vector<string> result = in.encrpytAES(plaintext);
+			AESRoundKey->Text = marshal_as<String^, string>(result[0]);
+			int n = result.size();
+			AESCiphertext->Text = marshal_as<String^, string>(result[n-1]);
+			AESRounRes->Text = marshal_as<String^, string>("e");
 		}
 		
 	}
@@ -278,8 +343,13 @@ namespace CryptoolProject {
 		if (ValidHexInput(ciphertext) && ValidHexInput(key))
 		{
 			AES in(key);
-			string res = in.decryptAES(ciphertext);
-			AESPlaintext->Text = marshal_as<String^, string>(res);
+			vector<string> result = in.encrpytAES(ciphertext);
+			AESRoundKey->Text = marshal_as<String^, string>(result[0]);
+			int n = result.size();
+			string s = result[n - 1];
+			AESPlaintext->Text = marshal_as<String^, string>(result[n - 1]);
+			//AESPlaintext->Text = marshal_as<String^, string>(res);
+			AESRounRes->Text = marshal_as<String^, string>("d");
 		}
 
 	}
@@ -288,5 +358,49 @@ namespace CryptoolProject {
 		parent->Show(); this->Close();
 	}
 
+private: System::Void AESRound_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+
+	string round = marshal_as<string, String^>(AESRound->Text);
+	string op = marshal_as<string, String^>(AESRounRes->Text);
+	if (op == "e")
+	{
+		AESerror->Text = marshal_as<String^, string>("");
+		string plaintext = marshal_as<string, String^>(AESPlaintext->Text);
+		string key = marshal_as<string, String^>(AESKey->Text);
+		if (plaintext.empty() || key.empty()) { AESerror->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return; }
+		if (plaintext.size() != 32) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Plaintext Size!"); return; }
+		if (key.size() != 32 && key.size() != 48 && key.size() != 64) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Key Size!"); return; }
+		if (ValidHexInput(plaintext) && ValidHexInput(key))
+		{
+			int r = round[6] - '0'-1;
+			AES in(key);
+			vector<string> result = in.encrpytAES(plaintext);
+			AESRoundKey->Text = marshal_as<String^, string>(result[r]);
+			//int n = result.size();
+			//AESCiphertext->Text = marshal_as<String^, string>(result[n - 1]);
+			AESRounRes->Text = marshal_as<String^, string>("e");
+		}
+	}
+	else
+	{
+		AESerror->Text = marshal_as<String^, string>("");
+		string ciphertext = marshal_as<string, String^>(AESCiphertext->Text);
+		string key = marshal_as<string, String^>(AESKey->Text);
+		if (ciphertext.empty() || key.empty()) { AESerror->Text = marshal_as<String^, string>("ERROR: Missing Fields!"); return; }
+		if (ciphertext.size() != 32) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Ciphertext Size!"); return; }
+		if (key.size() != 32 && key.size() != 48 && key.size() != 64) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Key Size!"); return; }
+		if (ValidHexInput(ciphertext) && ValidHexInput(key))
+		{
+			int r = round[6] - '0'-1;
+			AES in(key);
+			vector<string> result = in.encrpytAES(ciphertext);
+			AESRoundKey->Text = marshal_as<String^, string>(result[r]);
+			//int n = result.size();
+			//AESPlaintext->Text = marshal_as<String^, string>(result[n - 1]);
+			AESRounRes->Text = marshal_as<String^, string>("d");
+		}
+	}
+
+}
 };
 }

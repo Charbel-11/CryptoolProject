@@ -348,65 +348,132 @@ vector<vector<int>> hexToBytesAES(const string& hex, int N) {
 #pragma endregion
 
 class AES {
-	vector<vector<int>> encryptKeys, decryptKeys; int id = 0;
+public: vector<vector<int>> encryptKeys, decryptKeys; int id = 0;
 
-	vector<vector<int>> generateKeys(const string &key) {
-		int N = keyConst[id];
-		vector<vector<int>> res = hexToBytesAES(key, N); 
-		res.resize(4 * roundNum[id] + 4);
+	  vector<vector<int>> generateKeys(const string& key) {
+		  int N = keyConst[id];
+		  vector<vector<int>> res = hexToBytesAES(key, N);
+		  res.resize(4 * roundNum[id] + 4);
+		  for (int i = N; i < 4 * roundNum[id] + 4; i++) {
+			  vector<int> temp = res[i - 1];
+			  if (i % N == 0) {
+				  rotate(temp.begin(), temp.begin() + 1, temp.end());
+				  for (auto& x : temp) x = aesS[x]; temp ^= RCON[i / N];
+			  }
+			  if (N == 8 && i % 4 == 0) for (auto& x : temp) x = aesS[x];
 
-		for (int i = N; i < 4 * roundNum[id] + 4; i++) {
-			vector<int> temp = res[i - 1];
-			if (i % N == 0) { 
-				rotate(temp.begin(), temp.begin() + 1, temp.end());
-				for (auto& x : temp) x = aesS[x]; temp ^= RCON[i / N];
-			}
-			if (N == 8 && i % 4 == 0) for (auto& x : temp) x = aesS[x];
+			  res[i] = res[i - 4] ^ temp;
+		  }
 
-			res[i] = res[i - 4] ^ temp;
-		}
+		  return move(res);
+	  }
 
-		return move(res);
-	}
+	  void shiftColumns(vector<vector<int>>& v, vector<int>& shifts) {
+		  vector<int> temp(4);
+		  for (int i = 0; i < 4; i++) {
+			  for (int j = 0; j < 4; j++) temp[j] = v[j][i];
+			  rotate(temp.begin(), temp.begin() + shifts[i], temp.end());
+			  for (int j = 0; j < 4; j++) v[j][i] = temp[j];
+		  }
+	  }
 
-	void shiftColumns(vector<vector<int>>& v, vector<int>& shifts) {
-		vector<int> temp(4);
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) temp[j] = v[j][i];
-			rotate(temp.begin(), temp.begin() + shifts[i], temp.end());
-			for (int j = 0; j < 4; j++) v[j][i] = temp[j];
-		}
-	}
+	  vector<string> advancedEncryptionAlgorithm(string& text) {
+		  vector<string> ret;
+		  vector<vector<int>> res = hexToBytesAES(text, 4);
+		  for (int i = 0; i < 4; i++)	res[i] ^= encryptKeys[i];
 
-	string advancedEncryptionAlgorithm(string &text) {
-		vector<vector<int>> res = hexToBytesAES(text, 4);
-		for (int i = 0; i < 4; i++)	res[i] ^= encryptKeys[i];
+		  for (int i = 1; i <= roundNum[id]; i++) {
+			  string s;
+			  for (auto& x : res) for (auto& y : x) y = aesS[y];
+			  shiftColumns(res, shift);
+			  if (i != roundNum[id]) res = res * M;
+			  for (int j = 4 * i; j < 4 * i + 4; j++)
+				  res[j % 4] ^= encryptKeys[j];
 
-		for (int i = 1; i <= roundNum[id]; i++) {
-			for (auto& x : res) for (auto& y : x) y = aesS[y];
-			shiftColumns(res, shift);
-			if(i != roundNum[id]) res = res * M;
-			for (int j = 4 * i; j < 4 * i + 4; j++)
-				res[j % 4] ^= encryptKeys[j];
-		}
+			  //now printing
+			  s += "round ";
+			  s += to_string(i);
+			  s += ": \n";
+			  //s.push_back('/n');
+			  s += "keys:";
+			  s += "\n";
+			  for (int f = 4 * i; f < 4 * i + 4; f++) {
+				  for (int g = 0; g < 4; g++) {
+					  s += to_string(encryptKeys[f][g]) + " ";
+				  }
+				  s += "\n";
+			  }
+			  auto v = bytesToHexAES(res);
+			  //cout<<v<<endl;
+			  string ss = "";
+			  s += "round result matrix";
+			  s += "\n";
+			  for (int k = 0; k < 4; k++) {
+				  for (int l = 0; l < 4; l++) {
+					  for (int m = 0; m < 2; m++) {
+						  s += v[k * 8 + 2 * l + m];
+						  ss += v[k * 8 + 2 * l + m];
+					  }
+					  s += " ";
+					  ss += " ";
+				  }
+				  s += "\n";
+				  ss += "\n";
+			  }
+			  ret.push_back(s);
+			  if (i == roundNum[id]) {
+				  ret.push_back(ss);
+			  }
+		  }
+		  return move(ret);
+	  }
 
-		return move(bytesToHexAES(res));
-	}
+	  vector<string> advancedDecryptionAlgorithm(string& text) {
+		  vector<string> ret;
+		  vector<vector<int>> res = hexToBytesAES(text, 4);
+		  for (int i = 0; i < 4; i++)	res[i] ^= decryptKeys[i];
 
-	string advancedDecryptionAlgorithm(string &text) {
-		vector<vector<int>> res = hexToBytesAES(text, 4);
-		for (int i = 0; i < 4; i++)	res[i] ^= decryptKeys[i];
-
-		for (int i = 1; i <= roundNum[id]; i++) {
-			shiftColumns(res, invShift);
-			for (auto& x : res) for (auto& y : x) y = invS[y];
-			for (int j = 4 * i; j < 4 * i + 4; j++)
-				res[j % 4] ^= decryptKeys[j];
-			if(i != roundNum[id]) res = res * invM;
-		}
-
-		return move(bytesToHexAES(res));
-	}
+		  for (int i = 1; i <= roundNum[id]; i++) {
+			  string s = "";
+			  shiftColumns(res, invShift);
+			  for (auto& x : res) for (auto& y : x) y = invS[y];
+			  for (int j = 4 * i; j < 4 * i + 4; j++)
+				  res[j % 4] ^= decryptKeys[j];
+			  if (i != roundNum[id]) res = res * invM;
+			  s += "round ";
+			  s += to_string(i);
+			  s += ": \n";
+			  s += "keys:";
+			  s += "\n";
+			  for (int f = 4 * i; f < 4 * i + 4; f++) {
+				  for (int g = 0; g < 4; g++) {
+					  s += to_string(encryptKeys[f][g]) + " ";
+				  }
+				  s += "\n";
+			  }
+			  auto v = bytesToHexAES(res);
+			  string ss = "";
+			  s += "round result matrix";
+			  s += "\n";
+			  for (int k = 0; k < 4; k++) {
+				  for (int l = 0; l < 4; l++) {
+					  for (int m = 0; m < 2; m++) {
+						  s += v[k * 8 + 2 * l + m];
+						  ss += v[k * 8 + 2 * l + m];
+					  }
+					  s += " ";
+					  ss += " ";
+				  }
+				  s += "\n";
+				  ss += "\n";
+			  }
+			  ret.push_back(s);
+			  if (i == roundNum[id]) {
+				  ret.push_back(ss);
+			  }
+		  }
+		  return move(ret);
+	  }
 
 public : 
 
@@ -420,10 +487,10 @@ public :
 		reverse(decryptKeys.begin(), decryptKeys.end());
 	}
 
-	string encrpytAES(string text) {
+	vector<string> encrpytAES(string text) {
 		return advancedEncryptionAlgorithm(text);
 	}
-	string decryptAES(string text) {
+	vector<string> decryptAES(string text) {
 		return advancedDecryptionAlgorithm(text);
 	}
 };
