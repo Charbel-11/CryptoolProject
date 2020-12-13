@@ -244,8 +244,8 @@ namespace CryptoolProject {
 			// 
 			this->AESRound->FormattingEnabled = true;
 			this->AESRound->Items->AddRange(gcnew cli::array< System::Object^  >(14) {
-				L"Round 1", L"Round 2", L"Round 3", L"Round 4",
-					L"Round 5", L"Round 6", L"Round 7", L"Round 8", L"Round 9", L"Round 10", L"Round 11", L"Round 12", L"Round 13", L"Round 14"
+				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
+					L"9", L"10", L"11", L"12", L"13", L"14"
 			});
 			this->AESRound->Location = System::Drawing::Point(650, 71);
 			this->AESRound->Name = L"AESRound";
@@ -372,12 +372,11 @@ private: System::Void AESRound_SelectedIndexChanged(System::Object^ sender, Syst
 		if (key.size() != 32 && key.size() != 48 && key.size() != 64) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Key Size!"); return; }
 		if (ValidHexInput(plaintext) && ValidHexInput(key))
 		{
-			int r = round[6] - '0'-1;
+			int r = stoi(round)-1;
 			AES in(key);
 			vector<string> result = in.encrpytAES(plaintext);
+			if (r > result.size() - 1) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Round Number!"); return; }
 			AESRoundKey->Text = marshal_as<String^, string>(result[r]);
-			//int n = result.size();
-			//AESCiphertext->Text = marshal_as<String^, string>(result[n - 1]);
 			AESRounRes->Text = marshal_as<String^, string>("e");
 		}
 	}
@@ -391,12 +390,11 @@ private: System::Void AESRound_SelectedIndexChanged(System::Object^ sender, Syst
 		if (key.size() != 32 && key.size() != 48 && key.size() != 64) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Key Size!"); return; }
 		if (ValidHexInput(ciphertext) && ValidHexInput(key))
 		{
-			int r = round[6] - '0'-1;
+			int r = stoi(round)-1;
 			AES in(key);
 			vector<string> result = in.encrpytAES(ciphertext);
+			if (r > result.size()-1) { AESerror->Text = marshal_as<String^, string>("ERROR: Invalid Round Number!"); return; }
 			AESRoundKey->Text = marshal_as<String^, string>(result[r]);
-			//int n = result.size();
-			//AESPlaintext->Text = marshal_as<String^, string>(result[n - 1]);
 			AESRounRes->Text = marshal_as<String^, string>("d");
 		}
 	}
