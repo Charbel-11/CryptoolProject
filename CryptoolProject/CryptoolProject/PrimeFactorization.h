@@ -188,17 +188,6 @@ namespace CryptoolProject {
 		ans.pop_back();
 
 		output->Text = marshal_as < String^, string >(ans);
-		/*string s = marshal_as <string, String^>(textBox1->Text);
-		int x = stoi(marshal_as<string, String^>(textBox1->Text));
-		auto v = primeFact(x);
-		string ans = "1";
-		for (int i = 0; i < v.size(); i++) {
-			for (int j = 0; j < v[i].second; j++) {
-				ans = ans + "x " + to_string(v[i].first);
-			}
-
-		}
-		textBox1->Text = marshal_as < String^, string >(ans);*/
 	}
 	private: System::Void backButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		parent->Show(); this->Close();

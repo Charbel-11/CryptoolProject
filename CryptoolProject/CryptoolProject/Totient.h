@@ -1,4 +1,5 @@
 #pragma once
+#include "NumberTheory.h"
 
 namespace CryptoolProject {
 
@@ -14,13 +15,12 @@ namespace CryptoolProject {
 	/// </summary>
 	public ref class Totient : public System::Windows::Forms::Form
 	{
+		Form^ parent;
 	public:
-		Totient(void)
+		Totient(Form^ _parent)
 		{
+			parent = _parent;
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
 		}
 
 	protected:

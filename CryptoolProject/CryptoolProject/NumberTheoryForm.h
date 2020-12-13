@@ -2,6 +2,7 @@
 #include "MillerRabin.h"
 #include "Totient.h"
 #include "fastexp.h"
+#include "MillerRabin.h"
 #include "ChineseRemainder.h"
 #include "PrimeFactorization.h"
 
@@ -51,6 +52,7 @@ namespace CryptoolProject {
 
 	private: System::Windows::Forms::Button^ TFButton;
 	private: System::Windows::Forms::Button^ button5;
+	private: System::Windows::Forms::Button^ button1;
 
 
 	private:
@@ -72,6 +74,7 @@ namespace CryptoolProject {
 			this->PFButton = (gcnew System::Windows::Forms::Button());
 			this->TFButton = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// FEButton
@@ -107,7 +110,7 @@ namespace CryptoolProject {
 			// 
 			// PFButton
 			// 
-			this->PFButton->Location = System::Drawing::Point(47, 247);
+			this->PFButton->Location = System::Drawing::Point(47, 292);
 			this->PFButton->Name = L"PFButton";
 			this->PFButton->Size = System::Drawing::Size(265, 55);
 			this->PFButton->TabIndex = 3;
@@ -117,7 +120,7 @@ namespace CryptoolProject {
 			// 
 			// TFButton
 			// 
-			this->TFButton->Location = System::Drawing::Point(390, 247);
+			this->TFButton->Location = System::Drawing::Point(390, 292);
 			this->TFButton->Name = L"TFButton";
 			this->TFButton->Size = System::Drawing::Size(265, 55);
 			this->TFButton->TabIndex = 4;
@@ -127,7 +130,7 @@ namespace CryptoolProject {
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(214, 355);
+			this->button5->Location = System::Drawing::Point(214, 397);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(265, 55);
 			this->button5->TabIndex = 5;
@@ -135,11 +138,22 @@ namespace CryptoolProject {
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Click += gcnew System::EventHandler(this, &NumberTheoryForm::button5_Click);
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(224, 215);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(265, 55);
+			this->button1->TabIndex = 6;
+			this->button1->Text = L"Miller Rabin";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &NumberTheoryForm::button1_Click);
+			// 
 			// NumberTheoryForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(712, 452);
+			this->ClientSize = System::Drawing::Size(712, 484);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->TFButton);
 			this->Controls->Add(this->PFButton);
@@ -158,11 +172,11 @@ namespace CryptoolProject {
 		nF->Show(); this->Hide();
 	}
 	private: System::Void CRTButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		ChineseRemainder^ nF = gcnew ChineseRemainder();
+		ChineseRemainder^ nF = gcnew ChineseRemainder(this);
 		nF->Show(); this->Hide();
 	}
 	private: System::Void TFButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		Totient^ nF = gcnew Totient();
+		Totient^ nF = gcnew Totient(this);
 		nF->Show(); this->Hide();
 	}
 	private: System::Void PFButton_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -171,6 +185,10 @@ namespace CryptoolProject {
 	}
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 		parent->Show(); this->Close();
+	}
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		MillerRabin^ nF = gcnew MillerRabin(this);
+		nF->Show(); this->Hide();
 	}
 };
 }

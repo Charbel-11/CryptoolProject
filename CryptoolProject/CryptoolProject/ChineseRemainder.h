@@ -1,4 +1,5 @@
 #pragma once
+#include "NumberTheory.h"
 
 namespace CryptoolProject {
 
@@ -14,9 +15,11 @@ namespace CryptoolProject {
 	/// </summary>
 	public ref class ChineseRemainder : public System::Windows::Forms::Form
 	{
+		Form^ parent;
 	public:
-		ChineseRemainder(void)
+		ChineseRemainder(Form^ _parent)
 		{
+			parent = _parent;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
